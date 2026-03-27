@@ -28,6 +28,7 @@
       --white: #fafafa;
       --font-en: 'ElzaTextTrial', sans-serif;
       --font-kr: 'Pretendard', sans-serif;
+      --side-padding: clamp(1.5rem, 5vw, 6rem);
     }
 
     html {
@@ -65,7 +66,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      padding: 1.26rem 3rem;
+      padding: 1.26rem var(--side-padding);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -205,7 +206,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 3rem 6rem;
+      padding: 0 var(--side-padding) 6rem;
       background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V1_04250104.jpg') center center / cover no-repeat;
       background-color: var(--black);
       position: relative;
@@ -286,7 +287,7 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 0 3rem;
+      padding: 0 var(--side-padding);
       background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V3_03250104.jpg') center center / cover no-repeat;
       background-color: var(--black);
       position: relative;
@@ -424,7 +425,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 3rem 6rem;
+      padding: 0 var(--side-padding) 6rem;
       background: url('25FW_SSG_EDITORIAL/Chapter%2003/our%20team.jpg') center center / cover no-repeat;
       background-color: var(--black);
       position: relative;
@@ -470,7 +471,7 @@
 
     /* ── Recruitment Process <span style="font-family:Pretendard,sans-serif">:</span> Synchronizing with the System ── */
     .recruitment {
-      padding: 6rem 3rem;
+      padding: 6rem var(--side-padding);
       background: #F5F4F0;
     }
 
@@ -606,7 +607,7 @@
       max-height: 0;
       opacity: 0;
       transition: opacity 0.6s ease, max-height 0.6s ease;
-      padding: 0 3rem;
+      padding: 0 var(--side-padding);
       max-width: 900px;
       margin: 0 auto;
     }
@@ -614,7 +615,7 @@
     .positions.visible {
       max-height: 9999px;
       opacity: 1;
-      padding: 10rem 3rem;
+      padding: 10rem var(--side-padding);
     }
 
     .positions-label {
@@ -816,7 +817,7 @@
 
     /* ── Footer ── */
     footer {
-      padding: 2.5rem 3rem;
+      padding: 2.5rem var(--side-padding);
       background: var(--black);
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
@@ -867,7 +868,7 @@
     /* ── Apply CTA ── */
     .apply-cta {
       background: #0a0a0a;
-      padding: 8rem 3rem;
+      padding: 8rem var(--side-padding);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -904,37 +905,12 @@
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      header {
-        padding: 1.5rem 1.5rem;
-      }
-
-      .hero {
-        padding: 0 1.5rem 4rem;
-      }
-
-      .philosophy {
-        padding: 6rem 1.5rem;
-      }
-
-      .values {
-        padding: 4rem 1.5rem 6rem;
-      }
-
       .values-inner {
         grid-template-columns: 1fr;
         gap: 0;
       }
 
-      .positions {
-        padding: 6rem 1.5rem;
-      }
-
-      .cta {
-        padding: 6rem 1.5rem;
-      }
-
       footer {
-        padding: 2rem 1.5rem;
         flex-direction: column;
         gap: 1rem;
       }
