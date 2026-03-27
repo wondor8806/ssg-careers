@@ -388,20 +388,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function startTypingLoop(btn, onComplete) {
   var msg = '지원해 주셔서 감사합니다.';
-  btn.innerHTML = '<span id="typingText" style="visibility:hidden"></span>';
+  btn.innerHTML = '<span id="typingText" style="visibility:hidden;transition:opacity 0.6s ease"></span>';
   var span = btn.querySelector('#typingText');
   var i = 0;
+  var done = false;
+
   function typeNext() {
+    span.style.opacity = '1';
     span.style.visibility = 'visible';
     span.textContent = msg.slice(0, i + 1);
     i++;
     if (i < msg.length) {
-      setTimeout(typeNext, 80);
+      setTimeout(typeNext, 60);
     } else {
-      if (onComplete) setTimeout(onComplete, 500);
+      setTimeout(fadeOut, 600);
     }
   }
+
+  function fadeOut() {
+    span.style.opacity = '0';
+    setTimeout(function() {
+      if (done) return;
+      span.textContent = '';
+      i = 0;
+      setTimeout(typeNext, 200);
+    }, 600);
+  }
+
+  function finish() {
+    done = true;
+    if (onComplete) onComplete();
+  }
+
   typeNext();
+  return finish;
 }
 
 document.getElementById('applyForm').addEventListener('submit', async function(e) {
@@ -425,22 +445,26 @@ document.getElementById('applyForm').addEventListener('submit', async function(e
   const submitBtn = form.querySelector('button[type="submit"]');
   submitBtn.disabled = true;
 
-  startTypingLoop(submitBtn, async function() {
-    try {
-      const res = await fetch('https://formspree.io/f/xzdkzjpd', {
-        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        document.getElementById('applyContent').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:60vh;flex-direction:column;gap:2rem;text-align:center;"><p style="font-family:var(--font-en);font-size:0.7rem;letter-spacing:0.3em;color:var(--mid-gray);">APPLICATION RECEIVED</p><p style="font-family:var(--font-kr);font-size:1.1rem;font-weight:300;line-height:2;color:var(--black);">지원서가 성공적으로 제출되었습니다.<br>검토 후 개별 연락드리겠습니다.</p><a href="landing2.html" style="margin-top:1rem;padding:0.75rem 2rem;background:#0a0a0a;color:#fff;border:none;cursor:pointer;font-family:var(--font-kr);font-size:0.85rem;letter-spacing:0.05em;text-decoration:none;display:inline-block;">채용 페이지로 돌아가기</a></div>';
-      } else {
-        submitBtn.textContent = 'Submit →'; submitBtn.disabled = false;
-        alert('제출에 실패했습니다. 다시 시도해 주세요.');
-      }
-    } catch (err) {
+  var res;
+  var finish = startTypingLoop(submitBtn, function() {
+    if (res.ok) {
+      document.getElementById('applyContent').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:60vh;flex-direction:column;gap:2rem;text-align:center;"><p style="font-family:var(--font-en);font-size:0.7rem;letter-spacing:0.3em;color:var(--mid-gray);">APPLICATION RECEIVED</p><p style="font-family:var(--font-kr);font-size:1.1rem;font-weight:300;line-height:2;color:var(--black);">지원서가 성공적으로 제출되었습니다.<br>검토 후 개별 연락드리겠습니다.</p><a href="landing2.html" style="margin-top:1rem;padding:0.75rem 2rem;background:#0a0a0a;color:#fff;border:none;cursor:pointer;font-family:var(--font-kr);font-size:0.85rem;letter-spacing:0.05em;text-decoration:none;display:inline-block;">채용 페이지로 돌아가기</a></div>';
+    } else {
       submitBtn.textContent = 'Submit →'; submitBtn.disabled = false;
-      alert('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
+      alert('제출에 실패했습니다. 다시 시도해 주세요.');
     }
   });
+
+  try {
+    res = await fetch('https://formspree.io/f/xzdkzjpd', {
+      method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+    });
+    finish();
+  } catch (err) {
+    finish();
+    submitBtn.textContent = 'Submit →'; submitBtn.disabled = false;
+    alert('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
+  }
 });
   </script>
 </body>
