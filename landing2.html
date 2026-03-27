@@ -334,6 +334,7 @@
       flex-direction: column;
       justify-content: flex-start;
       overflow: visible;
+      min-height: 16rem;
     }
 
     .philosophy-slide {
@@ -1204,6 +1205,7 @@
 
       function goTo(next, direction) {
         if (next === current) return;
+        var scrollY = window.scrollY;
         slides[current].classList.remove('active');
         slides[next].classList.add('active');
         slides[next].style.animation = 'none';
@@ -1211,6 +1213,10 @@
         slides[next].style.animation = direction === 'right' ? 'slideInRight 0.5s ease forwards' : 'slideInLeft 0.5s ease forwards';
         counter.innerHTML = '0' + (next + 1) + ' <span style="font-family:Pretendard,sans-serif">/</span> 03';
         current = next;
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+        requestAnimationFrame(function() {
+          window.scrollTo({ top: scrollY, behavior: 'instant' });
+        });
       }
 
       document.getElementById('philNext').addEventListener('click', function() {
