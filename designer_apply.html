@@ -347,6 +347,25 @@
   </div>
 
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var MB = 1024 * 1024;
+      var limits = [
+        { name: '자기소개서', max: 10 * MB },
+        { name: '이력서',     max: 10 * MB },
+        { name: '포트폴리오', max: 100 * MB }
+      ];
+      limits.forEach(function(item) {
+        var input = document.querySelector('input[name="' + item.name + '"]');
+        if (!input) return;
+        input.addEventListener('change', function() {
+          if (this.files[0] && this.files[0].size > item.max) {
+            alert(item.name + '는 ' + (item.max / MB) + 'MB 이하의 파일만 첨부 가능합니다.');
+            this.value = '';
+          }
+        });
+      });
+    });
+
     document.getElementById('applyForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const form = e.target;
