@@ -203,6 +203,8 @@
       letter-spacing: 0.1em;
       border: none;
       cursor: pointer;
+      height: 52px;
+      min-height: 52px;
       margin-top: 1.5rem;
       transition: opacity 0.3s ease;
     }
@@ -230,7 +232,7 @@
 <body>
   <!-- Header -->
   <div class="apply-header">
-    <a href="landing.html" class="apply-header-logo">San San Gear</a>
+    <a href="landing2.html" class="apply-header-logo">San San Gear</a>
   </div>
 
   <!-- Main -->
@@ -378,12 +380,10 @@
       });
     });
 
-    function startTypingLoop(btn) {
+    function startTypingLoop(btn, onComplete) {
       var msg = '지원해 주셔서 감사합니다.';
-
-      btn.innerHTML = '';
+      btn.innerHTML = '<span id="typingText" style="visibility:hidden"></span>';
       var span = btn.querySelector('#typingText');
-
       var i = 0;
 
       function typeNext() {
@@ -393,22 +393,8 @@
         if (i < msg.length) {
           setTimeout(typeNext, 150);
         } else {
-          setTimeout(fadeOut, 1000);
+          if (onComplete) setTimeout(onComplete, 500);
         }
-      }
-
-      function fadeOut() {
-        btn.style.transition = 'none';
-        span.style.transition = 'opacity 0.8s ease';
-        span.style.opacity = '0';
-        setTimeout(function() {
-          span.style.opacity = '1';
-          span.style.transition = 'none';
-          span.style.visibility = 'hidden';
-          span.textContent = msg;
-          i = 0;
-          setTimeout(typeNext, 300);
-        }, 800);
       }
 
       typeNext();
@@ -433,13 +419,14 @@
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.textContent = '';
       submitBtn.disabled = true;
-      startTypingLoop(submitBtn);
       try {
         const res = await fetch('https://formspree.io/f/xzdkzjpd', {
           method: 'POST', body: data, headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          document.getElementById('applyContent').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:60vh;flex-direction:column;gap:2rem;text-align:center;"><p style="font-family:var(--font-en);font-size:0.7rem;letter-spacing:0.3em;color:var(--mid-gray);">APPLICATION RECEIVED</p><p style="font-family:var(--font-kr);font-size:1.1rem;font-weight:300;line-height:2;color:var(--black);">지원서가 성공적으로 제출되었습니다.<br>검토 후 개별 연락드리겠습니다.</p><a href="landing.html" style="margin-top:1rem;padding:0.75rem 2rem;background:#0a0a0a;color:#fff;border:none;cursor:pointer;font-family:var(--font-kr);font-size:0.85rem;letter-spacing:0.05em;text-decoration:none;display:inline-block;">채용 페이지로 돌아가기</a></div>';
+          startTypingLoop(submitBtn, function() {
+            document.getElementById('applyContent').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:60vh;flex-direction:column;gap:2rem;text-align:center;"><p style="font-family:var(--font-en);font-size:0.7rem;letter-spacing:0.3em;color:var(--mid-gray);">APPLICATION RECEIVED</p><p style="font-family:var(--font-kr);font-size:1.1rem;font-weight:300;line-height:2;color:var(--black);">지원서가 성공적으로 제출되었습니다.<br>검토 후 개별 연락드리겠습니다.</p><a href="landing2.html" style="margin-top:1rem;padding:0.75rem 2rem;background:#0a0a0a;color:#fff;border:none;cursor:pointer;font-family:var(--font-kr);font-size:0.85rem;letter-spacing:0.05em;text-decoration:none;display:inline-block;">채용 페이지로 돌아가기</a></div>';
+          });
         } else {
           submitBtn.textContent = 'Submit →'; submitBtn.disabled = false; submitBtn.style.opacity = '1';
           alert('제출에 실패했습니다. 다시 시도해 주세요.');
