@@ -284,7 +284,13 @@
 
     /* ── Philosophy ── */
     .philosophy {
-      height: 100vh;
+      min-height: 100vh;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: clamp(5rem, 30vh, 18rem);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
       position: relative;
       overflow: hidden;
       background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V3_03250104.jpg') center center / cover no-repeat;
@@ -302,14 +308,17 @@
       z-index: 0;
     }
 
-    .philosophy-label {
-      position: absolute;
-      top: clamp(5rem, 30vh, 18rem);
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - var(--side-padding) * 2);
+    .philosophy > * {
+      position: relative;
+      z-index: 1;
       max-width: 900px;
-      margin: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: calc(100% - var(--side-padding) * 2);
+    }
+
+    .philosophy-label {
+      margin-bottom: 2rem;
       padding-top: 0;
       font-family: var(--font-en);
       font-size: 0.65rem;
@@ -317,24 +326,14 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.5);
-      z-index: 1;
     }
 
     .philosophy-carousel {
-      position: absolute;
-      top: calc(clamp(5rem, 30vh, 18rem) + 3.5rem);
-      bottom: calc(clamp(2.5rem, 5vh, 4rem) + 3rem);
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - var(--side-padding) * 2);
-      max-width: 900px;
-      overflow: hidden;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin: 0;
-      padding: 0;
-      z-index: 1;
+      overflow: visible;
     }
 
     .philosophy-slide {
@@ -385,18 +384,11 @@
     }
 
     .philosophy-nav {
-      position: absolute;
-      bottom: clamp(2.5rem, 5vh, 4rem);
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - var(--side-padding) * 2);
-      max-width: 900px;
-      margin: 0;
+      margin-bottom: 3rem;
       padding: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 2;
     }
 
     .philosophy-nav-btn {
@@ -961,6 +953,12 @@
   <section class="philosophy">
     <p class="philosophy-label">Our Philosophy <span style="font-family: Pretendard, sans-serif;">:</span> A Creative Collective Representing the Present</p>
 
+    <div class="philosophy-nav">
+      <button class="philosophy-nav-btn" id="philPrev" style="font-family:Pretendard,sans-serif">PREV</button>
+      <span class="philosophy-counter" id="philCounter">01 <span style="font-family:Pretendard,sans-serif">/</span> 03</span>
+      <button class="philosophy-nav-btn" id="philNext" style="font-family:Pretendard,sans-serif">NEXT</button>
+    </div>
+
     <div class="philosophy-carousel" id="philCarousel">
       <div class="philosophy-slide active">
         <p class="philosophy-number">01</p>
@@ -978,11 +976,6 @@
         <p class="philosophy-number">03</p>
         <p class="philosophy-subtitle">우리는 지금을 살아가는 모든 <span style="font-family:Pretendard,sans-serif">'</span>실존적 개인<span style="font-family:Pretendard,sans-serif">'</span>들과 연대합니다.</p>
         <p class="philosophy-text">고립과 연결이 공존하는 모순적인 상황 속에서, 산산기어는 홀로 서 있는 개인들의 고독한 투쟁을 지지합니다. 우리가 제안하는 디자인 언어는 파편화된 개인들을 억지로 묶어내는 방식이 아닙니다. 대신, 각자의 영역에서 자신만의 궤적을 유지하며 살아가는 이들의 <span style="font-family:Pretendard,sans-serif">'</span>생명력<span style="font-family:Pretendard,sans-serif">'</span>에 조용히 공명하는 방식입니다. 산산기어의 제품을 입는다는 것은, 불확실한 세상에 매몰되지 않고 자신만의 중심축을 지키겠다는 무언의 연대입니다. 우리는 패션이라는 매개체를 통해 지금의 모든 실존과 연대하며, 세상을 향한 정제된 긍정의 에너지를 전하고자 합니다.</p>
-      </div>
-      <div class="philosophy-nav">
-        <button class="philosophy-nav-btn" id="philPrev" style="font-family:Pretendard,sans-serif">PREV</button>
-        <span class="philosophy-counter" id="philCounter">01 <span style="font-family:Pretendard,sans-serif">/</span> 03</span>
-        <button class="philosophy-nav-btn" id="philNext" style="font-family:Pretendard,sans-serif">NEXT</button>
       </div>
     </div>
   </section>
