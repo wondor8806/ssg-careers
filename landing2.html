@@ -29,6 +29,7 @@
       --font-en: 'ElzaTextTrial', sans-serif;
       --font-kr: 'Pretendard', sans-serif;
       --side-padding: clamp(1.5rem, 5vw, 6rem);
+      --section-top: clamp(8rem, 45vh, 26rem);
     }
 
     html {
@@ -202,11 +203,15 @@
 
     /* ── Hero ── */
     .hero {
-      height: 100vh;
+      height: auto;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 var(--side-padding) 6rem;
+      justify-content: flex-start;
+      padding-top: var(--section-top);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      padding-left: var(--side-padding);
+      padding-right: var(--side-padding);
       background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V1_04250104.jpg') center center / cover no-repeat;
       background-color: var(--black);
       position: relative;
@@ -290,7 +295,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding-top: clamp(5rem, 30vh, 18rem);
+      padding-top: var(--section-top);
       padding-bottom: clamp(3rem, 6vh, 5rem);
       position: relative;
       overflow: hidden;
@@ -321,6 +326,7 @@
     .philosophy-label {
       margin-bottom: 2rem;
       padding-top: 0;
+      flex-shrink: 0;
       font-family: var(--font-en);
       font-size: 0.65rem;
       font-weight: 600;
@@ -330,11 +336,16 @@
     }
 
     .philosophy-carousel {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      overflow: visible;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      overflow: visible;
       min-height: 16rem;
     }
 
@@ -387,11 +398,18 @@
     }
 
     .philosophy-nav {
-      margin-bottom: 3rem;
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      width: calc(100% - var(--side-padding) * 2);
+      max-width: 900px;
+      margin-bottom: 2rem;
       padding: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .philosophy-nav-btn {
@@ -421,11 +439,15 @@
 
     /* ── Our Team ── */
     .our-team {
-      height: 100vh;
+      height: auto;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 var(--side-padding) 6rem;
+      justify-content: flex-start;
+      padding-top: var(--section-top);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      padding-left: var(--side-padding);
+      padding-right: var(--side-padding);
       background: url('25FW_SSG_EDITORIAL/Chapter%2003/our%20team.jpg') center center / cover no-repeat;
       background-color: var(--black);
       position: relative;
