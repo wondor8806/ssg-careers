@@ -380,36 +380,38 @@
 
     function startTypingLoop(btn) {
       var msg = '지원해 주셔서 감사합니다.';
-      var i = 0;
-      var typing = true;
 
-      function tick() {
-        if (typing) {
-          btn.textContent = msg.slice(0, i + 1);
-          i++;
-          if (i >= msg.length) {
-            typing = false;
-            setTimeout(fade, 800);
-            return;
-          }
-          setTimeout(tick, 80);
+      btn.innerHTML = '';
+      var span = btn.querySelector('#typingText');
+
+      var i = 0;
+
+      function typeNext() {
+        span.style.visibility = 'visible';
+        span.textContent = msg.slice(0, i + 1);
+        i++;
+        if (i < msg.length) {
+          setTimeout(typeNext, 150);
+        } else {
+          setTimeout(fadeOut, 1000);
         }
       }
 
-      function fade() {
-        btn.style.transition = 'opacity 0.6s ease';
-        btn.style.opacity = '0.2';
+      function fadeOut() {
+        btn.style.transition = 'none';
+        span.style.transition = 'opacity 0.8s ease';
+        span.style.opacity = '0';
         setTimeout(function() {
-          btn.style.opacity = '1';
-          btn.textContent = '';
+          span.style.opacity = '1';
+          span.style.transition = 'none';
+          span.style.visibility = 'hidden';
+          span.textContent = msg;
           i = 0;
-          typing = true;
-          setTimeout(tick, 300);
-        }, 600);
+          setTimeout(typeNext, 300);
+        }, 800);
       }
 
-      tick();
-      return;
+      typeNext();
     }
 
     document.getElementById('applyForm').addEventListener('submit', async function(e) {
