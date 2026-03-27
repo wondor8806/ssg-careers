@@ -1223,6 +1223,23 @@
       }
     }
 
+    // 캐러셀 높이를 가장 긴 슬라이드 기준으로 고정
+    (function() {
+      var carousel = document.getElementById('philCarousel');
+      var allSlides = carousel.querySelectorAll('.philosophy-slide');
+      var maxH = 0;
+
+      allSlides.forEach(function(slide) {
+        slide.style.display = 'block';
+        slide.style.visibility = 'hidden';
+        maxH = Math.max(maxH, slide.offsetHeight);
+        slide.style.display = '';
+        slide.style.visibility = '';
+      });
+
+      carousel.style.minHeight = maxH + 'px';
+    })();
+
     // Philosophy carousel
     (function() {
       var slides = document.querySelectorAll('.philosophy-slide');
