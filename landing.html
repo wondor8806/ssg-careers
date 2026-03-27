@@ -658,18 +658,39 @@
     }
 
     .position-toggle {
-      font-family: var(--font-en);
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: var(--charcoal);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       width: 2rem;
-      text-align: center;
+      height: 2rem;
+      position: relative;
       flex-shrink: 0;
     }
 
-    .position-item.active .position-toggle {
-      transform: rotate(45deg);
+    .position-toggle::before,
+    .position-toggle::after {
+      content: '';
+      position: absolute;
+      background: var(--charcoal);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    }
+
+    .position-toggle::before {
+      width: 14px;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .position-toggle::after {
+      width: 1px;
+      height: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .position-item.active .position-toggle::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
     }
 
     .position-detail {
@@ -1071,7 +1092,7 @@
     <div class="position-item">
       <div class="position-header">
         <h2 class="position-title">Designer</h2>
-        <span class="position-toggle">+</span>
+        <span class="position-toggle"></span>
       </div>
       <div class="position-detail">
         <div class="position-detail-inner">
