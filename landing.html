@@ -319,7 +319,7 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.5);
-      padding-top: calc(8rem + 200px);
+      padding-top: calc(8rem + 400px);
       margin-bottom: 40px;
       flex-shrink: 0;
     }
@@ -1364,7 +1364,7 @@
             </div>
             <div class="apply-field">
               <label>Phone *</label>
-              <input type="tel" name="전화번호" required>
+              <input type="tel" name="전화번호" required pattern="[0-9\-]+" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9\-]/g,'')">
             </div>
           </div>
           <div class="apply-row">
@@ -1381,21 +1381,21 @@
             <label>자기소개서 *</label>
             <div class="apply-file-area">
               <input type="file" name="자기소개서" accept=".pdf,.doc,.docx" required>
-              <p>PDF, DOC, DOCX</p>
+              <p>PDF, DOC, DOCX / 10MB 이하</p>
             </div>
           </div>
           <div class="apply-field">
             <label>이력서</label>
             <div class="apply-file-area">
               <input type="file" name="이력서" accept=".pdf,.doc,.docx">
-              <p>PDF, DOC, DOCX</p>
+              <p>PDF, DOC, DOCX / 10MB 이하</p>
             </div>
           </div>
           <div class="apply-field">
             <label>포트폴리오</label>
             <div class="apply-file-area">
               <input type="file" name="포트폴리오" accept=".pdf,.doc,.docx,.zip,.jpg,.png">
-              <p>PDF, DOC, DOCX, ZIP, JPG, PNG</p>
+              <p>PDF, DOC, DOCX, ZIP, JPG, PNG / 100MB 이하</p>
             </div>
           </div>
           <button type="submit" class="apply-submit">Submit →</button>
@@ -1512,6 +1512,13 @@
     document.getElementById('applyForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const form = e.target;
+      const MB = 1024 * 1024;
+      const f1 = form.querySelector('[name="자기소개서"]').files[0];
+      const f2 = form.querySelector('[name="이력서"]').files[0];
+      const f3 = form.querySelector('[name="포트폴리오"]').files[0];
+      if (f1 && f1.size > 10 * MB) { alert('자기소개서는 10MB 이하의 파일만 첨부 가능합니다.'); return; }
+      if (f2 && f2.size > 10 * MB) { alert('이력서는 10MB 이하의 파일만 첨부 가능합니다.'); return; }
+      if (f3 && f3.size > 100 * MB) { alert('포트폴리오는 100MB 이하의 파일만 첨부 가능합니다.'); return; }
       const data = new FormData(form);
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.textContent = '제출 중...';
