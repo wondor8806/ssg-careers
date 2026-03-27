@@ -1117,29 +1117,29 @@
       });
     });
 
-    // Scroll lock: click "Career Opportunities" to unlock and scroll down
+    // Scroll lock/unlock with sessionStorage persistence
     (function() {
       var enterBtn = document.getElementById('enterBtn');
       var heroSection = document.getElementById('heroSection');
 
-      function unlockScroll() {
+      function unlock() {
         document.documentElement.classList.add('unlocked');
         document.body.classList.add('unlocked');
+        sessionStorage.setItem('ssg_unlocked', '1');
       }
 
-      if (window.scrollY > 0) {
-        unlockScroll();
+      if (sessionStorage.getItem('ssg_unlocked') === '1') {
+        unlock();
       }
 
       window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-          unlockScroll();
+        if (sessionStorage.getItem('ssg_unlocked') === '1') {
+          unlock();
         }
       });
 
       enterBtn.addEventListener('click', function() {
-        document.documentElement.classList.add('unlocked');
-        document.body.classList.add('unlocked');
+        unlock();
         heroSection.scrollIntoView({ behavior: 'smooth' });
       });
     })();
