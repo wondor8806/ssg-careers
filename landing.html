@@ -1010,7 +1010,7 @@
 
     <!-- Designer -->
     <div class="position-item">
-      <div class="position-header" onclick="togglePosition(this)">
+      <div class="position-header">
         <h2 class="position-title">Designer</h2>
         <span class="position-toggle">+</span>
       </div>
@@ -1084,7 +1084,7 @@
 
     <!-- Creative -->
     <div class="position-item">
-      <div class="position-header" onclick="togglePosition(this)">
+      <div class="position-header">
         <h2 class="position-title">Creative</h2>
         <span class="position-toggle">+</span>
       </div>
@@ -1115,7 +1115,7 @@
 
     <!-- SCM -->
     <div class="position-item">
-      <div class="position-header" onclick="togglePosition(this)">
+      <div class="position-header">
         <h2 class="position-title">SCM</h2>
         <span class="position-toggle">+</span>
       </div>
@@ -1165,30 +1165,29 @@
 
   <script>
     // Accordion
-    function togglePosition(header) {
-      const scrollY = window.scrollY;
-      const item = header.parentElement;
-      const detail = item.querySelector('.position-detail');
-      const isActive = item.classList.contains('active');
+    document.querySelectorAll('.position-header').forEach(function(header) {
+      header.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.blur();
 
-      document.querySelectorAll('.position-item').forEach(el => {
-        el.classList.remove('active');
-        el.querySelector('.position-detail').style.maxHeight = null;
-      });
+        var item = this.parentElement;
+        var detail = item.querySelector('.position-detail');
+        var isActive = item.classList.contains('active');
 
-      if (!isActive) {
-        item.classList.add('active');
-        detail.style.maxHeight = detail.scrollHeight + 'px';
-      }
-
-      window.scrollTo({ top: scrollY, behavior: 'instant' });
-      requestAnimationFrame(function() {
-        window.scrollTo({ top: scrollY, behavior: 'instant' });
-        requestAnimationFrame(function() {
-          window.scrollTo({ top: scrollY, behavior: 'instant' });
+        document.querySelectorAll('.position-item').forEach(function(el) {
+          el.classList.remove('active');
+          var d = el.querySelector('.position-detail');
+          d.style.maxHeight = null;
+          d.style.opacity = '0';
         });
+
+        if (!isActive) {
+          item.classList.add('active');
+          detail.style.maxHeight = detail.scrollHeight + 'px';
+          detail.style.opacity = '1';
+        }
       });
-    }
+    });
 
     // Scroll lock: click "Career Opportunities" to unlock and scroll down
     (function() {
