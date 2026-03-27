@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAN SAN GEAR — Careers</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    @font-face {
+      font-family: 'ElzaTextTrial';
+      src: url('elza-trial/ElzaTextTrial-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --charcoal: #2c2c2c;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #8a8a8a;
+      --light-gray: #e8e8e8;
+      --off-white: #f5f5f3;
+      --white: #fafafa;
+      --font-en: 'ElzaTextTrial', sans-serif;
+      --font-kr: 'Pretendard', sans-serif;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    html.ready {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--off-white);
+      color: var(--black);
+      font-family: var(--font-kr);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.26rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    header.on-light {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #ffffff;
+      transition: color 0.4s ease;
+    }
+
+    header.on-light .logo {
+      color: #ffffff;
+    }
+
+    .header-label {
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #ffffff;
+      opacity: 1;
+      transition: color 0.4s ease;
+    }
+
+    header.on-light .header-label {
+      color: #ffffff;
+    }
+
+    /* ── Logo Reveal ── */
+    .logo-reveal {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--black);
+      position: relative;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .logo-reveal-img {
+      width: 1529px;
+      max-width: 82vw;
+      height: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.01;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      filter: invert(1);
+    }
+
+    .logo-reveal.active .logo-reveal-img {
+      opacity: 0.15;
+    }
+
+    .logo-reveal-dark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .logo-reveal.active .logo-reveal-dark {
+      opacity: 1;
+    }
+
+    .logo-reveal-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .logo-reveal-text {
+      font-family: var(--font-en);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 2.5rem;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 3;
+    }
+
+    .logo-reveal-desc {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.02em;
+      line-height: 1.8;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 6rem;
+      background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V1_04250104.jpg') center center / cover no-repeat;
+      background-color: var(--black);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 40px;
+    }
+
+    .hero-body {
+      font-family: var(--font-kr);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.7);
+      word-break: keep-all;
+      margin-bottom: 24px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1;
+    }
+
+    .scroll-indicator span {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: var(--mid-gray);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── Philosophy ── */
+    .philosophy {
+      padding: 12rem 3rem;
+      max-width: none;
+      margin: 0;
+      background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V3_03250104.jpg') center center / cover no-repeat;
+      position: relative;
+    }
+
+    .philosophy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .philosophy > * {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .philosophy-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 40px;
+    }
+
+    .philosophy-block {
+      margin-bottom: 64px;
+    }
+
+    .philosophy-number {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .philosophy-subtitle {
+      font-family: var(--font-kr);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    .philosophy-text {
+      font-family: var(--font-kr);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.65);
+      word-break: keep-all;
+    }
+
+    .philosophy-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+      margin-top: 4rem;
+    }
+
+    /* ── Our Team ── */
+    .our-team {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 6rem;
+      background: url('25FW_SSG_EDITORIAL/Chapter%2003/our%20team.jpg') center center / cover no-repeat;
+      background-color: var(--black);
+      position: relative;
+    }
+
+    .our-team::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .our-team-content {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .our-team-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 40px;
+    }
+
+    .our-team-text {
+      font-family: var(--font-kr);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.8);
+      word-break: keep-all;
+      margin-bottom: 24px;
+    }
+
+    /* ── Recruitment Process ── */
+    .recruitment {
+      padding: 12rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--off-white);
+    }
+
+    .recruitment-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+    }
+
+    .recruitment-intro {
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dark-gray);
+      margin-bottom: 64px;
+    }
+
+    .recruitment-item {
+      margin-bottom: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .recruitment-question {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .recruitment-answer {
+      font-family: var(--font-en);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dark-gray);
+    }
+
+    /* ── Values ── */
+    .values {
+      padding: 6rem 3rem 10rem;
+      background: var(--white);
+    }
+
+    .values-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .value-item {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .value-number {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--mid-gray);
+      margin-bottom: 16px;
+    }
+
+    .value-title {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .value-desc {
+      font-family: var(--font-kr);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--dark-gray);
+    }
+
+    /* ── Positions ── */
+    .positions {
+      padding: 10rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .positions-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+    }
+
+    .position-item {
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .position-item:last-child {
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .position-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      user-select: none;
+    }
+
+    .position-header:hover {
+      opacity: 0.6;
+    }
+
+    .position-title {
+      font-family: var(--font-en);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+
+    .position-toggle {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .position-item.active .position-toggle {
+      transform: rotate(45deg);
+    }
+
+    .position-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .position-item.active .position-detail {
+      opacity: 1;
+    }
+
+    .position-detail-inner {
+      padding: 0 0 3rem 0;
+    }
+
+    .position-tag {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      border: 1px solid var(--light-gray);
+      padding: 0.35rem 0.8rem;
+      margin-bottom: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .position-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .position-list li {
+      font-family: var(--font-kr);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dark-gray);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .position-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--mid-gray);
+      font-size: 0.7rem;
+    }
+
+    .position-section-title {
+      font-family: var(--font-kr);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 10rem 3rem;
+      background: var(--black);
+      text-align: center;
+    }
+
+    .cta-text {
+      font-family: var(--font-kr);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--mid-gray);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: 1.2rem 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .cta-button:hover::before {
+      left: 0;
+    }
+
+    .cta-button:hover {
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 3rem;
+      background: var(--black);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--dark-gray);
+    }
+
+    .footer-link {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--white);
+    }
+
+    /* ── Hero Grain ── */
+    .hero-grain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.04;
+      transition: opacity 0.5s ease;
+    }
+
+    .hero:hover .hero-grain {
+      opacity: 0.08;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .hero {
+        padding: 0 1.5rem 4rem;
+      }
+
+      .philosophy {
+        padding: 6rem 1.5rem;
+      }
+
+      .values {
+        padding: 4rem 1.5rem 6rem;
+      }
+
+      .values-inner {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .positions {
+        padding: 6rem 1.5rem;
+      }
+
+      .cta {
+        padding: 6rem 1.5rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">San San Gear</div>
+    <div class="header-label">Careers</div>
+  </header>
+
+  <!-- Logo Reveal -->
+  <section class="logo-reveal">
+    <img src="ssg%20logo.png" alt="SAN SAN GEAR" class="logo-reveal-img">
+    <div class="logo-reveal-dark"></div>
+    <div class="logo-reveal-cover"></div>
+    <p class="logo-reveal-text">Career Opportunities</p>
+    <p class="logo-reveal-desc">San San Gear is a creative collective of independent thinkers.<br>We seek individuals with deep expertise and a perspective entirely their own.</p>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero">
+    <canvas class="hero-grain"></canvas>
+    <div class="hero-content">
+    <p class="hero-label">Brand Story <span style="font-family: Pretendard, sans-serif;">:</span> Building the Next Spiritual Infrastructure</p>
+    <p class="hero-body">Founded in Seoul in 2019, San San Gear has evolved beyond a mere clothing brand, designing 'Gear' for those navigating the complexities of the vast urban system. Instead of merely chasing the trajectory of trends, we focus on the subtle tensions and invisible signals that permeate the contemporary era.</p>
+    <p class="hero-body">By fusing experimental subcultural spirit with technical innovation, San San Gear is steadily expanding its territory into the global market alongside major international retailers. Transcending the boundaries of fashion, we aspire to reach beyond as a creative collective, serving as the most resilient Spiritual Infrastructure for every individual exploring an uncertain future.</p>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <p class="philosophy-label reveal">Our Philosophy <span style="font-family: Pretendard, sans-serif;">:</span> A Creative Collective Representing the Present</p>
+
+    <div class="philosophy-block reveal">
+      <p class="philosophy-number">01</p>
+      <p class="philosophy-subtitle">We are a creative collective that defines and represents the present.</p>
+      <p class="philosophy-text">Fashion is the most vivid record of fleeting time. San San Gear refuses to be a brand that merely traces the trajectory of trends. We first sense the fundamental questions churning silently beneath the surface of now—the collision of grand narratives, the uncertainty born of information overload, and the emotions of individuals isolated yet connected. We are a creative collective that captures meaningful signals amid the noise of the present, redefining them through our own grammar and presenting them to the world.</p>
+    </div>
+
+    <div class="philosophy-block reveal">
+      <p class="philosophy-number">02</p>
+      <p class="philosophy-subtitle">We translate invisible thought into the clearest creative and product.</p>
+      <p class="philosophy-text">Thought without form easily becomes hollow; product without philosophy is easily consumed. San San Gear seeks to be the medium that bridges these two extremes. The tension we witness in the present is translated into structural reality. When invisible philosophy takes on its most solid physical form, our garments transcend mere clothing—becoming organic products that protect and sustain the wearer's sense of self.</p>
+    </div>
+
+    <div class="philosophy-block reveal">
+      <p class="philosophy-number">03</p>
+      <p class="philosophy-subtitle">We stand in solidarity with every 'existential individual' living in the now.</p>
+      <p class="philosophy-text">In this paradoxical condition where isolation and connection coexist, San San Gear supports the solitary struggles of individuals standing alone. The design language we propose does not force fragmented individuals together. Instead, it quietly resonates with the 'vitality' of those who maintain their own trajectories in their own domains. To wear San San Gear is a silent solidarity—a commitment to holding one's own center without being consumed by an uncertain world. Through the medium of fashion, we stand with every existence in the present, seeking to convey a refined, positive energy toward the world.</p>
+    </div>
+
+    <div class="philosophy-divider reveal"></div>
+  </section>
+
+  <!-- Our Team -->
+  <section class="our-team">
+    <div class="our-team-content">
+    <p class="our-team-label">Our Team <span style="font-family: Pretendard, sans-serif;">:</span> The System Operators</p>
+    <p class="our-team-text">The San San Gear team is a single organic system formed by the convergence of modules, each possessing distinct expertise. From planning and design to production, visual directing, and strategic sales, we maintain independent trajectories within our respective domains while resonating closely within one overarching Logic.</p>
+    <p class="our-team-text">United under the name San San Gear, we share diverse subcultural backgrounds and sensibilities, engaging in relentless dialogue to translate invisible thought into tangible material and render it again in the language of the global market. Flexible thinking unconfined by the conventions of the Scene, paired with tenacious execution—this is the most powerful engine driving San San Gear, and the very identity through which we transform the signals of the present into product and business.</p>
+    </div>
+  </section>
+
+  <!-- Recruitment Process -->
+  <section class="recruitment">
+    <p class="recruitment-label">Recruitment Process</p>
+    <p class="recruitment-intro">San San Gear selects System Operators who maintain independent trajectories within their respective domains while moving organically within the brand's larger system. Below is a guide for those who wish to join.</p>
+
+    <div class="recruitment-item">
+      <p class="recruitment-question">01. What identity does San San Gear seek in its talent?</p>
+      <p class="recruitment-answer">We seek existential individuals driven to prove the reason for their own existence. We welcome those who reject the conventional grammar of the Scene and possess the insight to filter essential signals from the flood of information. Work at San San Gear goes beyond simply making products—it is a process of translating the brand's philosophy into physical hardware.</p>
+    </div>
+
+    <div class="recruitment-item">
+      <p class="recruitment-question">02. What verification stages does the recruitment process involve?</p>
+      <p class="recruitment-answer">The process follows this sequence: Document Review > 1st Practical Interview (Logical Alignment) > Operational Task (Functional Verification) > 2nd Culture Fit Interview (Philosophical Resonance) > Final Confirmation. The operational task assigned after the first interview is an essential verification protocol to confirm how the applicant's thinking translates into functional output within our system.</p>
+    </div>
+
+    <div class="recruitment-item">
+      <p class="recruitment-question">03. What is the most important element you evaluate in a portfolio?</p>
+      <p class="recruitment-answer">Rather than a mere list of outcomes, we focus on the 'trajectory of thought.' Please explain what question a particular project originated from, what logical process you followed to address it, and how you arrived at the final result. We persistently ask not 'what' you made, but 'why' you designed it that way.</p>
+    </div>
+
+    <div class="recruitment-item">
+      <p class="recruitment-question">04. How does the San San Gear team actually collaborate?</p>
+      <p class="recruitment-answer">Each division operates like an independent module. The entire process from planning to sales is organically connected, and every team member becomes the decision-maker within their own domain. Refining ideas through open discussion and executing confirmed logic without compromise—this is the core operating principle of the San San Gear team.</p>
+    </div>
+
+    <div class="recruitment-item">
+      <p class="recruitment-question">05. Are there materials to study the brand before joining?</p>
+      <p class="recruitment-answer">We recommend a deep reading of our Brand Story and Our Philosophy. Understanding how San San Gear views the contemporary era will be the most powerful strategy for joining—far beyond mere interview preparation.</p>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <div class="values-inner">
+      <div class="value-item reveal">
+        <p class="value-number">01</p>
+        <p class="value-title">Integrity</p>
+        <p class="value-desc">본질에 집중합니다. 불필요한 것을 덜어내고, 가장 정직한 형태의 결과물을 추구합니다.</p>
+      </div>
+      <div class="value-item reveal">
+        <p class="value-number">02</p>
+        <p class="value-title">Creativity</p>
+        <p class="value-desc">익숙한 것에 안주하지 않습니다. 낯선 시선으로 세상을 바라보고, 새로운 언어를 만들어갑니다.</p>
+      </div>
+      <div class="value-item reveal">
+        <p class="value-number">03</p>
+        <p class="value-title">Solidarity</p>
+        <p class="value-desc">함께할 때 더 멀리 갑니다. 서로의 전문성을 존중하며, 하나의 방향으로 나아갑니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="positions">
+    <p class="positions-label reveal">Open Positions</p>
+
+    <!-- Designer -->
+    <div class="position-item reveal">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">Designer</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">Full-time</span>
+          <span class="position-tag">Seoul</span>
+
+          <p class="position-section-title">담당 업무</p>
+          <ul class="position-list">
+            <li>브랜드 아이덴티티 기반의 시각 디자인 전반</li>
+            <li>시즌별 컬렉션 그래픽 및 패키지 디자인</li>
+            <li>디지털 콘텐츠 및 캠페인 비주얼 제작</li>
+            <li>브랜드 가이드라인 관리 및 확장</li>
+          </ul>
+
+          <p class="position-section-title">자격 요건</p>
+          <ul class="position-list">
+            <li>그래픽 디자인 실무 경력 3년 이상</li>
+            <li>Adobe Creative Suite 능숙</li>
+            <li>타이포그래피와 레이아웃에 대한 깊은 이해</li>
+            <li>패션 또는 라이프스타일 브랜드 경험 우대</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creative -->
+    <div class="position-item reveal">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">Creative</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">Full-time</span>
+          <span class="position-tag">Seoul</span>
+
+          <p class="position-section-title">담당 업무</p>
+          <ul class="position-list">
+            <li>브랜드 크리에이티브 디렉션 및 기획</li>
+            <li>시즌 컨셉 개발 및 스토리텔링</li>
+            <li>촬영 기획, 아트 디렉션, 현장 디렉팅</li>
+            <li>외부 크리에이터 및 아티스트 협업 관리</li>
+          </ul>
+
+          <p class="position-section-title">자격 요건</p>
+          <ul class="position-list">
+            <li>크리에이티브 기획 또는 디렉션 경력 3년 이상</li>
+            <li>패션, 아트, 컬처 전반에 대한 높은 감도</li>
+            <li>트렌드를 읽되, 트렌드에 휩쓸리지 않는 시선</li>
+            <li>영상 및 포토 디렉팅 경험 우대</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCM -->
+    <div class="position-item reveal">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">SCM</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">Full-time</span>
+          <span class="position-tag">Seoul</span>
+          <span class="position-tag">日本語 or 中文 Required</span>
+
+          <p class="position-section-title">담당 업무</p>
+          <ul class="position-list">
+            <li>해외 생산처 소싱 및 관계 관리</li>
+            <li>생산 일정 수립, 진행 관리 및 품질 검수</li>
+            <li>원부자재 발주 및 재고 관리</li>
+            <li>일본 및 중국 생산 파트너와의 커뮤니케이션</li>
+          </ul>
+
+          <p class="position-section-title">자격 요건</p>
+          <ul class="position-list">
+            <li>의류 SCM 실무 경력 2년 이상</li>
+            <li>일본어 또는 중국어 비즈니스 커뮤니케이션 가능자 (필수)</li>
+            <li>해외 생산 관리 경험 우대</li>
+            <li>꼼꼼한 일정 관리와 문제 해결 능력</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <p class="cta-text reveal">
+      당신의 시선이 우리의 다음을 만듭니다.<br>
+      함께할 준비가 되셨다면.
+    </p>
+    <a href="mailto:recruit@sansangear.com" class="cta-button reveal">
+      <span>Apply Now</span>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-copy">&copy; 2026 SAN SAN GEAR. All rights reserved.</span>
+    <a href="#" class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top</a>
+  </footer>
+
+  <script>
+    // Enable smooth scroll after load
+    setTimeout(function() {
+      document.documentElement.classList.add('ready');
+    }, 100);
+
+    // Accordion
+    function togglePosition(header) {
+      const item = header.parentElement;
+      const detail = item.querySelector('.position-detail');
+      const isActive = item.classList.contains('active');
+
+      // Close all
+      document.querySelectorAll('.position-item').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.position-detail').style.maxHeight = null;
+      });
+
+      // Open clicked (if it wasn't already open)
+      if (!isActive) {
+        item.classList.add('active');
+        detail.style.maxHeight = detail.scrollHeight + 'px';
+      }
+    }
+
+    // Logo spotlight hover with lerp delay
+    (function() {
+      var section = document.querySelector('.logo-reveal');
+      var dark = document.querySelector('.logo-reveal-dark');
+      var cover = document.querySelector('.logo-reveal-cover');
+      var mx = 0, my = 0, sx = 0, sy = 0;
+      var active = false;
+
+      section.addEventListener('mousemove', function(e) {
+        if (!section.classList.contains('active')) {
+          section.classList.add('active');
+          var rect = section.getBoundingClientRect();
+          sx = e.clientX - rect.left;
+          sy = e.clientY - rect.top;
+        }
+        var rect = section.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+        active = true;
+      });
+
+      section.addEventListener('mouseleave', function() {
+        active = false;
+        section.classList.remove('active');
+        dark.style.background = '';
+        cover.style.background = '';
+      });
+
+      function animate() {
+        if (active) {
+          sx += (mx - sx) * 0.05;
+          sy += (my - sy) * 0.05;
+          dark.style.background = 'radial-gradient(circle 134px at ' + sx + 'px ' + sy + 'px, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%)';
+          cover.style.background = 'radial-gradient(circle 134px at ' + sx + 'px ' + sy + 'px, transparent 0%, #0a0a0a 100%)';
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // Hero grain texture
+    (function() {
+      var canvas = document.querySelector('.hero-grain');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function drawGrain() {
+        var w = canvas.width, h = canvas.height;
+        if (w === 0 || h === 0) return;
+        var imageData = ctx.createImageData(w, h);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          var v = Math.random() * 255;
+          data[i] = v;
+          data[i+1] = v;
+          data[i+2] = v;
+          data[i+3] = 25;
+        }
+        ctx.putImageData(imageData, 0, 0);
+      }
+
+      function loop() {
+        drawGrain();
+        setTimeout(function() { requestAnimationFrame(loop); }, 80);
+      }
+      loop();
+    })();
+
+    // Header color based on section
+    (function() {
+      var header = document.querySelector('header');
+      var darkSections = document.querySelectorAll('.logo-reveal, .cta');
+
+      function checkHeader() {
+        var headerBottom = header.getBoundingClientRect().bottom;
+        var onDark = false;
+
+        darkSections.forEach(function(section) {
+          var rect = section.getBoundingClientRect();
+          if (rect.top < headerBottom && rect.bottom > 0) {
+            onDark = true;
+          }
+        });
+
+        if (onDark) {
+          header.classList.remove('on-light');
+        } else {
+          header.classList.add('on-light');
+        }
+      }
+
+      window.addEventListener('scroll', checkHeader);
+      checkHeader();
+    })();
+
+  </script>
+
+</body>
+</html>

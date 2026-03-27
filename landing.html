@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAN SAN GEAR — Careers</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    @font-face {
+      font-family: 'ElzaTextTrial';
+      src: url('elza-trial/ElzaTextTrial-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --charcoal: #2c2c2c;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #8a8a8a;
+      --light-gray: #e8e8e8;
+      --off-white: #f5f5f3;
+      --white: #fafafa;
+      --font-en: 'ElzaTextTrial', sans-serif;
+      --font-kr: 'Pretendard', sans-serif;
+    }
+
+    html {
+      font-size: 16px;
+      overflow: hidden;
+    }
+
+    html.unlocked {
+      overflow: auto;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--off-white);
+      color: var(--black);
+      font-family: var(--font-kr);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+    }
+
+    body.unlocked {
+      overflow: auto;
+    }
+
+    ::selection {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.26rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    header.on-light {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #ffffff;
+      transition: color 0.4s ease;
+    }
+
+    header.on-light .logo {
+      color: #ffffff;
+    }
+
+    .header-label {
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #ffffff;
+      opacity: 1;
+      transition: color 0.4s ease;
+    }
+
+    header.on-light .header-label {
+      color: #ffffff;
+    }
+
+    /* ── Logo Reveal ── */
+    .logo-reveal {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--black);
+      position: relative;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .logo-reveal-img {
+      width: 1529px;
+      max-width: 82vw;
+      height: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.01;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      filter: invert(1);
+    }
+
+    .logo-reveal.active .logo-reveal-img {
+      opacity: 0.15;
+    }
+
+    .logo-reveal-dark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .logo-reveal.active .logo-reveal-dark {
+      opacity: 1;
+    }
+
+    .logo-reveal-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .logo-reveal-text {
+      font-family: var(--font-en);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 2.5rem;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 3;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      transform: translateY(-10px);
+    }
+
+    .logo-reveal-text:hover {
+      opacity: 0.6;
+    }
+
+    .logo-reveal-desc {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.02em;
+      line-height: 1.8;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+      transform: translateY(10px);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 6rem;
+      background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V1_04250104.jpg') center center / cover no-repeat;
+      background-color: var(--black);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 40px;
+    }
+
+    .hero-body {
+      font-family: var(--font-kr);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.7);
+      word-break: keep-all;
+      margin-bottom: 24px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1;
+    }
+
+    .scroll-indicator span {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: var(--mid-gray);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── Philosophy ── */
+    .philosophy {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 3rem;
+      background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V3_03250104.jpg') center center / cover no-repeat;
+      background-color: var(--black);
+      position: relative;
+    }
+
+    .philosophy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .philosophy > * {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .philosophy-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      padding-top: calc(8rem + 200px);
+      margin-bottom: 40px;
+      flex-shrink: 0;
+    }
+
+    .philosophy-carousel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+      padding-bottom: 6rem;
+    }
+
+    .philosophy-slide {
+      display: none;
+      width: 100%;
+    }
+
+    .philosophy-slide.active {
+      display: block;
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .philosophy-number {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .philosophy-subtitle {
+      font-family: var(--font-en);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+
+    .philosophy-text {
+      font-family: var(--font-kr);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.65);
+      word-break: keep-all;
+    }
+
+    .philosophy-nav {
+      position: absolute;
+      bottom: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 6rem);
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .philosophy-nav-btn {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: Pretendard, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      padding: 8px 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .philosophy-nav-btn:hover {
+      opacity: 0.4;
+    }
+
+    .philosophy-counter {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Our Team ── */
+    .our-team {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 6rem;
+      background: url('25FW_SSG_EDITORIAL/Chapter%2003/our%20team.jpg') center center / cover no-repeat;
+      background-color: var(--black);
+      position: relative;
+    }
+
+    .our-team::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .our-team-content {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .our-team-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 40px;
+    }
+
+    .our-team-text {
+      font-family: var(--font-kr);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.8);
+      word-break: keep-all;
+      margin-bottom: 24px;
+    }
+
+    /* ── Recruitment Process <span style="font-family:Pretendard,sans-serif">:</span> Synchronizing with the System ── */
+    .recruitment {
+      padding: 6rem 3rem;
+      background: #F5F4F0;
+    }
+
+    .recruitment-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .recruitment-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+    }
+
+    .recruitment-intro {
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dark-gray);
+      margin-bottom: 64px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #D0CEC9;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      cursor: pointer;
+      user-select: none;
+      font-family: var(--font-kr);
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: #1A1A1A;
+      transition: opacity 0.3s ease;
+    }
+
+    .faq-question:hover {
+      opacity: 0.6;
+    }
+
+    .faq-toggle {
+      font-family: Pretendard, sans-serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+      width: 2rem;
+      text-align: center;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      font-family: var(--font-kr);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--dark-gray);
+      padding: 0;
+    }
+
+    .faq-item.active .faq-answer {
+      opacity: 1;
+      padding-bottom: 24px;
+    }
+
+    /* ── Values ── */
+    .values {
+      padding: 6rem 3rem 10rem;
+      background: var(--white);
+    }
+
+    .values-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .value-item {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .value-number {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--mid-gray);
+      margin-bottom: 16px;
+    }
+
+    .value-title {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .value-desc {
+      font-family: var(--font-kr);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--dark-gray);
+    }
+
+    /* ── Positions ── */
+    .positions {
+      padding: 10rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .positions-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+    }
+
+    .position-item {
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .position-item:last-child {
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .position-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      user-select: none;
+    }
+
+    .position-header:hover {
+      opacity: 0.6;
+    }
+
+    .position-title {
+      font-family: var(--font-en);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+
+    .position-toggle {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .position-item.active .position-toggle {
+      transform: rotate(45deg);
+    }
+
+    .position-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .position-item.active .position-detail {
+      opacity: 1;
+    }
+
+    .position-detail-inner {
+      padding: 0 0 3rem 0;
+    }
+
+    .position-tag {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      border: 1px solid var(--light-gray);
+      padding: 0.35rem 0.8rem;
+      margin-bottom: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .position-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .position-list li {
+      font-family: var(--font-kr);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dark-gray);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .position-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--mid-gray);
+      font-size: 0.7rem;
+    }
+
+    .position-section-title {
+      font-family: var(--font-kr);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      margin-bottom: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 10rem 3rem;
+      background: var(--black);
+      text-align: center;
+    }
+
+    .cta-text {
+      font-family: var(--font-kr);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--mid-gray);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: 1.2rem 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .cta-button:hover::before {
+      left: 0;
+    }
+
+    .cta-button:hover {
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 3rem;
+      background: var(--black);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--dark-gray);
+    }
+
+    .footer-link {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--white);
+    }
+
+    /* ── Hero Grain ── */
+    .hero-grain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.04;
+      transition: opacity 0.5s ease;
+    }
+
+    .hero:hover .hero-grain {
+      opacity: 0.08;
+    }
+
+    /* ── Apply Modal ── */
+    .apply-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      z-index: 9999;
+      overflow-y: auto;
+    }
+
+    .apply-modal.active {
+      display: block;
+    }
+
+    .apply-modal-inner {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      gap: 4rem;
+    }
+
+    .apply-modal-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      font-family: Pretendard, sans-serif;
+      color: var(--black);
+      cursor: pointer;
+      z-index: 10000;
+      transition: opacity 0.3s ease;
+    }
+
+    .apply-modal-close:hover {
+      opacity: 0.4;
+    }
+
+    .apply-modal-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 2rem;
+    }
+
+    .apply-modal-title {
+      font-family: var(--font-kr);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+
+    .apply-modal-position {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--mid-gray);
+    }
+
+    .apply-modal-right {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .apply-modal-form-title {
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 2rem;
+    }
+
+    .apply-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .apply-field label {
+      display: block;
+      font-family: var(--font-kr);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .apply-field input[type="text"],
+    .apply-field input[type="email"],
+    .apply-field input[type="tel"],
+    .apply-field input[type="url"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      font-family: var(--font-kr);
+      font-size: 0.85rem;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .apply-field input:focus {
+      border-color: var(--black);
+    }
+
+    .apply-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .apply-row .apply-field {
+      flex: 1;
+    }
+
+    .apply-file-area {
+      border: 1px dashed #ccc;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .apply-file-area input[type="file"] {
+      width: 100%;
+      font-family: var(--font-kr);
+      font-size: 0.8rem;
+      color: var(--dark-gray);
+    }
+
+    .apply-file-area p {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      color: var(--mid-gray);
+      margin-top: 0.5rem;
+    }
+
+    .apply-submit {
+      width: 100%;
+      padding: 1rem;
+      background: #0a0a0a;
+      color: #fff;
+      font-family: var(--font-kr);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .apply-submit:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .apply-modal-inner {
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+        gap: 2rem;
+      }
+      .apply-modal-left {
+        padding-right: 0;
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .hero {
+        padding: 0 1.5rem 4rem;
+      }
+
+      .philosophy {
+        padding: 6rem 1.5rem;
+      }
+
+      .values {
+        padding: 4rem 1.5rem 6rem;
+      }
+
+      .values-inner {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .positions {
+        padding: 6rem 1.5rem;
+      }
+
+      .cta {
+        padding: 6rem 1.5rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">San San Gear</div>
+    <div class="header-label">Careers</div>
+  </header>
+
+  <!-- Logo Reveal -->
+  <section class="logo-reveal">
+    <img src="ssg%20logo.png" alt="SAN SAN GEAR" class="logo-reveal-img">
+    <div class="logo-reveal-dark"></div>
+    <div class="logo-reveal-cover"></div>
+    <p class="logo-reveal-text" id="enterBtn">Career Opportunities</p>
+    <p class="logo-reveal-desc">산산기어는 독립적으로 사유하는 크리에이티브 집단입니다.<br>깊은 전문성과 자신만의 고유한 시선을 가진 동료를 찾습니다.</p>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero" id="heroSection">
+    <canvas class="hero-grain"></canvas>
+    <div class="hero-content">
+    <p class="hero-label">Brand Story <span style="font-family: Pretendard, sans-serif;">:</span> Building the Next Spiritual Infrastructure</p>
+    <p class="hero-body">2019년 서울에서 시작된 산산기어는 단순히 옷을 만드는 브랜드를 넘어, 도시라는 거대한 시스템 속에서 살아가는 이들을 위한 <span style="font-family:Pretendard,sans-serif">'</span>장비(Gear)<span style="font-family:Pretendard,sans-serif">'</span>를 설계해왔습니다. 우리는 유행의 궤적을 뒤쫓는 대신, 동시대를 가로지르는 미세한 긴장감과 보이지 않는 신호들에 주목합니다.</p>
+    <p class="hero-body">서브컬처의 실험적인 정신과 기술적 혁신을 결합하며 성장해온 산산기어는 이제 전 세계 주요 리테일러들과 함께 글로벌 시장으로 그 영토를 넓히고 있습니다. 우리는 패션이라는 경계를 넘어, 독창적인 세계관을 공유하는 크리에이티브 집단으로서 불확실한 미래를 탐험하는 모든 개인에게 가장 단단한 정신적 인프라가 되고자 합니다.</p>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <p class="philosophy-label">Our Philosophy <span style="font-family: Pretendard, sans-serif;">:</span> A Creative Collective Representing the Present</p>
+
+    <div class="philosophy-carousel" id="philCarousel">
+      <div class="philosophy-slide active">
+        <p class="philosophy-number">01</p>
+        <p class="philosophy-subtitle">우리는 현재를 정의하고 대변하는 크리에이티브 집단입니다.</p>
+        <p class="philosophy-text">패션은 흐르는 시간을 붙잡아 두는 가장 선명한 기록물입니다. 산산기어는 단순히 유행의 궤적을 쫓는 브랜드가 되기를 거부합니다. 우리는 지금의 수면 아래에서 소리 없이 요동치는 본질적인 물음들—거대 담론의 충돌, 정보의 과잉이 낳은 불확실성, 그리고 고립된 채 연결된 개인들의 정서를 먼저 감각합니다. 우리는 현재를 관통하는 거친 소음들 사이에서 유의미한 신호를 포착하고, 이를 산산기어만의 문법으로 재정의하여 세상에 내놓는 크리에이티브 집단입니다.</p>
+      </div>
+
+      <div class="philosophy-slide">
+        <p class="philosophy-number">02</p>
+        <p class="philosophy-subtitle">보이지 않는 사유를 가장 선명한 크리에이티브와 제품으로 치환합니다.</p>
+        <p class="philosophy-text">사유는 형체가 없기에 공허해지기 쉽고, 제품은 철학이 없기에 소모되기 쉽습니다. 산산기어는 이 극단적인 두 세계를 잇는 매개체가 되고자 합니다. 우리가 목격한 지금의 긴장감은 구조적 실체로 치환됩니다. 보이지 않는 철학이 가장 단단한 물리적 형태를 갖추었을 때, 비로소 우리의 의복은 단순한 옷을 넘어 사용자의 자아를 보호하고 지탱하는 유기적인 제품으로 완성됩니다.</p>
+      </div>
+
+      <div class="philosophy-slide">
+        <p class="philosophy-number">03</p>
+        <p class="philosophy-subtitle">우리는 지금을 살아가는 모든 <span style="font-family:Pretendard,sans-serif">'</span>실존적 개인<span style="font-family:Pretendard,sans-serif">'</span>들과 연대합니다.</p>
+        <p class="philosophy-text">고립과 연결이 공존하는 모순적인 상황 속에서, 산산기어는 홀로 서 있는 개인들의 고독한 투쟁을 지지합니다. 우리가 제안하는 디자인 언어는 파편화된 개인들을 억지로 묶어내는 방식이 아닙니다. 대신, 각자의 영역에서 자신만의 궤적을 유지하며 살아가는 이들의 <span style="font-family:Pretendard,sans-serif">'</span>생명력<span style="font-family:Pretendard,sans-serif">'</span>에 조용히 공명하는 방식입니다. 산산기어의 제품을 입는다는 것은, 불확실한 세상에 매몰되지 않고 자신만의 중심축을 지키겠다는 무언의 연대입니다. 우리는 패션이라는 매개체를 통해 지금의 모든 실존과 연대하며, 세상을 향한 정제된 긍정의 에너지를 전하고자 합니다.</p>
+      </div>
+      <div class="philosophy-nav">
+        <button class="philosophy-nav-btn" id="philPrev" style="font-family:Pretendard,sans-serif">PREV</button>
+        <span class="philosophy-counter" id="philCounter">01 <span style="font-family:Pretendard,sans-serif">/</span> 03</span>
+        <button class="philosophy-nav-btn" id="philNext" style="font-family:Pretendard,sans-serif">NEXT</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Team -->
+  <section class="our-team">
+    <div class="our-team-content">
+    <p class="our-team-label">Our Team <span style="font-family: Pretendard, sans-serif;">:</span> The System Operators</p>
+    <p class="our-team-text">산산기어의 팀은 각기 다른 전문성을 가진 모듈들이 결합된 하나의 유기적인 시스템입니다. 기획과 비주얼 디렉팅, 디자인, 생산, 그리고 전략적인 세일즈에 이르기까지, 우리는 각자의 영역에서 독립적인 궤적을 유지하면서도 하나의 거대한 로직(Logic) 안에서 긴밀하게 공명합니다.</p>
+    <p class="our-team-text">산산기어라는 이름 아래 모인 우리는 서로 다른 서브컬처적 배경과 감각을 공유하며, 보이지 않는 사유를 선명한 물질로 치환하고 이를 다시 글로벌 시장의 언어로 번역하기 위해 끊임없이 토론합니다. 씬(Scene)의 관습에 갇히지 않는 유연한 사고와 집요한 실행력, 이것이 산산기어를 움직이는 가장 강력한 엔진이자 시대의 신호를 제품과 비즈니스로 구현해내는 우리의 정체성입니다.</p>
+    </div>
+  </section>
+
+  <!-- Recruitment Process <span style="font-family:Pretendard,sans-serif">:</span> Synchronizing with the System -->
+  <section class="recruitment">
+    <div class="recruitment-inner">
+    <p class="recruitment-label">Recruitment Process <span style="font-family:Pretendard,sans-serif">:</span> Synchronizing with the System</p>
+    <p class="recruitment-intro">산산기어는 각자의 영역에서 독립적인 궤적을 그리면서도, 브랜드의 거대한 시스템 안에서 유기적으로 움직일 System Operators를 선발합니다. 아래는 합류를 희망하는 분들을 위한 가이드입니다.</p>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">01. 산산기어가 지향하는 인재의 정체성은 무엇인가요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">우리는 스스로의 존재 이유를 증명하려는 실존적 개인을 찾습니다. 씬(Scene)의 관습적 문법을 거부하고, 정보의 범람 속에서 본질적인 신호를 걸러낼 수 있는 통찰력을 가진 분들을 환영합니다. 특히, 정제된 사유를 지체 없이 현실의 물리적 실체로 구현해내는 집요한 실행력은 산산기어의 로직을 완성하는 핵심 동력입니다. 산산기어에서의 작업은 단순히 제품을 만드는 것을 넘어, 브랜드의 철학을 고밀도의 하드웨어로 치환하는 과정이기 때문입니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">02. 채용은 어떤 검증 단계를 거쳐 진행되나요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">합류 과정은 [서류 검토 &gt; 1차 실무 인터뷰(Logical Alignment) &gt; 직무 과제(Operational Task: Functional Verification) &gt; 2차 컬처핏 인터뷰(Philosophical Resonance) &gt; 최종 확정]으로 진행됩니다. 1차 인터뷰 이후 부여되는 직무 과제는 지원자의 사유가 실제 시스템 내에서 어떻게 기능적 결과물로 구현되는지를 확인하는 필수적인 검증 프로토콜입니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">03. 포트폴리오에서 가장 중요하게 평가하는 요소는 무엇입니까?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">단순한 결과물의 나열보다 사유의 궤적을 중점적으로 봅니다. 특정 프로젝트가 어떤 질문에서 시작되었는지, 그 질문을 해결하기 위해 어떠한 논리적 과정을 거쳐 최종적인 결과물을 도출했는지 설명해 주세요. 우리는 무엇(What)을 만들었는지 보다 왜(Why) 그렇게 설계했는지를 집요하게 묻습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">04. 산산기어 팀의 실제 업무 방식은 어떠합니까?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">각 파트는 독립적인 모듈처럼 작동합니다. 기획부터 세일즈까지 전 과정이 유기적으로 연결되어 있으며, 모든 팀원은 자신의 영역에서 의사결정의 주체가 됩니다. 자유로운 토론을 통해 아이디어를 다듬고, 확정된 로직에 대해서는 타협 없는 실행력을 발휘하는 것이 산산기어 팀의 핵심 운영 원칙입니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">05. 합류 전, 브랜드를 사전에 학습할 수 있는 자료가 있나요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">우리의 Brand Story와 Our Philosophy를 깊이 있게 탐독하시길 권합니다. 산산기어가 동시대를 바라보는 시선을 이해하는 것이야말로, 면접 준비 그 이상의 가장 강력한 합류 전략이 될 것입니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">06. 이전 지원 이력이 합류 과정에 영향을 미치나요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">과거의 불일치(Mismatch)가 영구적인 배제를 의미하지는 않습니다. 우리는 개인의 논리(Logic) 역시 시간의 흐름에 따라 진화한다고 믿습니다. 이전 지원 시점보다 본인의 역량과 브랜드 철학의 동기화 수준이 유의미하게 강화되었다고 판단된다면, 언제든 다시 시스템에 문을 두드려 주시기 바랍니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">07. 산산기어는 개인의 성장을 어떻게 지원합니까?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">우리는 성장을 개별 모듈의 업그레이드로 정의합니다. 팀원 개개인이 동시대의 가장 날카로운 감각을 유지할 수 있도록, 업무와 관련된 전문 서적, 전시, 기술 세미나 등 사유의 범위를 확장할 수 있는 모든 활동을 적극적으로 지원합니다. 시스템의 진화는 곧 운영자의 진화에서 시작되기 때문입니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">08. 작업 환경(Physical Hardware)은 어떻게 구성되어 있나요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">산산기어의 오피스는 몰입과 효율을 극대화하도록 설계된 최적화된 인프라입니다. 불필요한 장식을 배제하고 기능에 집중한 공간에서, 모든 운영자는 최상의 컨디션으로 자신의 로직을 구현하는 데 집중할 수 있습니다. 또한, 직무의 특성에 따라 가장 효율적인 하드웨어와 소프트웨어 툴을 선택하여 사용할 수 있는 권한을 부여합니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">09. 글로벌 프로젝트에 참여할 기회가 있나요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">산산기어의 영토는 서울에 국한되지 않습니다. 우리는 전 세계 주요 거점(Nodes)의 파트너들과 끊임없이 교류하며 프로젝트를 진행합니다. 언어적 장벽을 넘어 브랜드의 논리를 글로벌 시장의 언어로 번역할 준비가 된 운영자라면, 해외 리테일러와의 협업이나 글로벌 팝업 프로젝트 등 세계 무대에서 활동할 기회는 언제나 열려 있습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">10. 산산기어가 추구하는 지속 가능한 운영이란 무엇인가요?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer">우리는 번아웃을 경계하며, 에너지가 정밀하게 제어되는 상태를 지향합니다. 불필요한 야근이나 형식적인 절차는 시스템의 효율을 떨어뜨리는 노이즈(Noise)일 뿐입니다. 정해진 시간 내에 최대의 임팩트를 만들어내고, 업무 외의 시간에는 운영자 개인의 실존을 단단하게 다질 수 있는 환경을 만드는 것이 산산기어의 지속 가능한 프로토콜입니다.</div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="positions">
+    <p class="positions-label">Open Positions</p>
+
+    <!-- Designer -->
+    <div class="position-item">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">Designer</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">정규직</span>
+          <span class="position-tag">2026. 2. 26 – 2026. 2. 26</span>
+          <span class="position-tag">서울시 중구</span>
+
+          <p class="position-section-title" style="margin-top:2.5rem;">1. 모집요강 - DESIGNER</p>
+
+          <p class="position-section-title">담당업무</p>
+          <ul class="position-list">
+            <li>브랜드 아이덴티티를 반영한 컬렉션 기획 및 디자인 관련 업무 전반</li>
+            <li>트렌드 리서치 및 레퍼런스 수집</li>
+            <li>샘플 핸들링 및 퀄리티 체크</li>
+            <li>협력 업체 및 내부 팀과의 원활한 커뮤니케이션</li>
+          </ul>
+
+          <p class="position-section-title">자격요건</p>
+          <ul class="position-list">
+            <li>성별·경력 무관</li>
+            <li>해외 출장에 결격 사유가 없는 분</li>
+            <li>패션관련학과 졸업생 혹은 졸업예정자</li>
+          </ul>
+
+          <p class="position-section-title">우대사항</p>
+          <ul class="position-list">
+            <li>PHOTOSHOP, ILLUSTRATOR 활용 가능자</li>
+            <li>자사 브랜드 및 다양한 서브컬처에 대한 높은 이해도</li>
+            <li>패션 산업 구조와 경험에 대한 폭넓은 이해 및 시장 흐름 파악 능력 보유자</li>
+          </ul>
+
+          <p class="position-section-title" style="margin-top:2.5rem;">2. 근무조건</p>
+
+          <p class="position-section-title">근무조건</p>
+          <ul class="position-list">
+            <li>근무형태<span style="font-family:Pretendard,sans-serif">:</span> 정규직 전환형 계약직 (3개월 평가 후 전환 여부 결정)</li>
+            <li>근무지<span style="font-family:Pretendard,sans-serif">:</span> 서울시 중구</li>
+            <li>급여조건<span style="font-family:Pretendard,sans-serif">:</span> 면접 후 협의</li>
+          </ul>
+
+          <p class="position-section-title">문화 / 복지</p>
+          <ul class="position-list">
+            <li>패션 기업이 아닌 패션 브랜드로서 성장하고자 하는 구성원들이 함께합니다.</li>
+            <li>성과를 통해 성장하는 직원과 성과를 보상하는 문화가 함께합니다.</li>
+            <li>자사 제품 임직원 특별 할인 혜택을 제공합니다.</li>
+            <li>직원 건강검진을 지원합니다.</li>
+          </ul>
+
+          <p class="position-section-title" style="margin-top:2.5rem;">3. 채용 프로세스</p>
+
+          <p class="position-section-title">지원방법</p>
+          <ul class="position-list">
+            <li>SNS 아이디가 기재된 이력서와 자기소개서를 제출해 주세요.</li>
+            <li>SNS 아이디 기재 필수, 미기재 시 검토 공유를 전화 부탁드립니다.</li>
+            <li>파일명에 "[모집분야명_이름]" 형식으로 제출 바랍니다.</li>
+            <li>제출 서류에 허위 사실이 발견될 경우, 채용 확정 후에도 채용이 취소될 수 있습니다.</li>
+          </ul>
+
+          <p class="position-section-title">채용절차</p>
+          <ul class="position-list">
+            <li>서류전형 → 1차 면접 → 직무테스트 → 2차 면접 → 최종합격</li>
+            <li>※ 서류전형 합격자에 한하여 1차 면접 안내드립니다.</li>
+          </ul>
+
+          <button onclick="openApplyModal('Designer')" style="display:block;width:100%;padding:1rem;background:#0a0a0a;color:#fff;font-family:var(--font-kr);font-size:0.9rem;letter-spacing:0.1em;border:none;cursor:pointer;margin-top:2rem;text-align:center;">지원하기 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creative -->
+    <div class="position-item">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">Creative</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">Full-time</span>
+          <span class="position-tag">Seoul</span>
+
+          <p class="position-section-title">담당 업무</p>
+          <ul class="position-list">
+            <li>브랜드 크리에이티브 디렉션 및 기획</li>
+            <li>시즌 컨셉 개발 및 스토리텔링</li>
+            <li>촬영 기획, 아트 디렉션, 현장 디렉팅</li>
+            <li>외부 크리에이터 및 아티스트 협업 관리</li>
+          </ul>
+
+          <p class="position-section-title">자격 요건</p>
+          <ul class="position-list">
+            <li>크리에이티브 기획 또는 디렉션 경력 3년 이상</li>
+            <li>패션, 아트, 컬처 전반에 대한 높은 감도</li>
+            <li>트렌드를 읽되, 트렌드에 휩쓸리지 않는 시선</li>
+            <li>영상 및 포토 디렉팅 경험 우대</li>
+          </ul>
+          <button onclick="openApplyModal('Creative')" style="display:block;width:100%;padding:1rem;background:#0a0a0a;color:#fff;font-family:var(--font-kr);font-size:0.9rem;letter-spacing:0.1em;border:none;cursor:pointer;margin-top:2rem;text-align:center;">지원하기 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCM -->
+    <div class="position-item">
+      <div class="position-header" onclick="togglePosition(this)">
+        <h2 class="position-title">SCM</h2>
+        <span class="position-toggle">+</span>
+      </div>
+      <div class="position-detail">
+        <div class="position-detail-inner">
+          <span class="position-tag">Full-time</span>
+          <span class="position-tag">Seoul</span>
+          <span class="position-tag">日本語 or 中文 Required</span>
+
+          <p class="position-section-title">담당 업무</p>
+          <ul class="position-list">
+            <li>해외 생산처 소싱 및 관계 관리</li>
+            <li>생산 일정 수립, 진행 관리 및 품질 검수</li>
+            <li>원부자재 발주 및 재고 관리</li>
+            <li>일본 및 중국 생산 파트너와의 커뮤니케이션</li>
+          </ul>
+
+          <p class="position-section-title">자격 요건</p>
+          <ul class="position-list">
+            <li>의류 SCM 실무 경력 2년 이상</li>
+            <li>일본어 또는 중국어 비즈니스 커뮤니케이션 가능자 (필수)</li>
+            <li>해외 생산 관리 경험 우대</li>
+            <li>꼼꼼한 일정 관리와 문제 해결 능력</li>
+          </ul>
+          <button onclick="openApplyModal('SCM')" style="display:block;width:100%;padding:1rem;background:#0a0a0a;color:#fff;font-family:var(--font-kr);font-size:0.9rem;letter-spacing:0.1em;border:none;cursor:pointer;margin-top:2rem;text-align:center;">지원하기 →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <p class="cta-text">
+      당신의 시선이 우리의 다음을 만듭니다.<br>
+      함께할 준비가 되셨다면.
+    </p>
+    <a href="mailto:recruit@sansangear.com" class="cta-button">
+      <span>Apply Now</span>
+    </a>
+  </section>
+
+  <!-- Apply Modal -->
+  <div id="applyModal" class="apply-modal">
+    <div class="apply-modal-inner">
+      <button class="apply-modal-close" onclick="closeApplyModal()">&times;</button>
+      <div class="apply-modal-left">
+        <p class="apply-modal-title">지원하기</p>
+        <p class="apply-modal-position" id="applyPosition"></p>
+      </div>
+      <div class="apply-modal-right">
+        <p class="apply-modal-form-title">SAN SAN GEAR 지원서</p>
+        <form action="https://formspree.io/f/xzdkzjpd" method="POST" enctype="multipart/form-data" id="applyForm">
+          <div class="apply-field">
+            <label>직종</label>
+            <input type="text" name="직종" id="applyRole" readonly>
+          </div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>성 *</label>
+              <input type="text" name="성" required>
+            </div>
+            <div class="apply-field">
+              <label>이름 *</label>
+              <input type="text" name="이름" required>
+            </div>
+          </div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>Email</label>
+              <input type="email" name="email">
+            </div>
+            <div class="apply-field">
+              <label>Phone</label>
+              <input type="tel" name="전화번호">
+            </div>
+          </div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>SNS Link</label>
+              <input type="url" name="SNS">
+            </div>
+            <div class="apply-field">
+              <label>Other links</label>
+              <input type="url" name="기타링크">
+            </div>
+          </div>
+          <div class="apply-field">
+            <label>이력서</label>
+            <div class="apply-file-area">
+              <input type="file" name="이력서" accept=".pdf,.doc,.docx">
+              <p>PDF, DOC, DOCX</p>
+            </div>
+          </div>
+          <div class="apply-field">
+            <label>자기소개서 *</label>
+            <div class="apply-file-area">
+              <input type="file" name="자기소개서" accept=".pdf,.doc,.docx" required>
+              <p>PDF, DOC, DOCX</p>
+            </div>
+          </div>
+          <div class="apply-field">
+            <label>포트폴리오</label>
+            <div class="apply-file-area">
+              <input type="file" name="포트폴리오" accept=".pdf,.doc,.docx,.zip,.jpg,.png">
+              <p>PDF, DOC, DOCX, ZIP, JPG, PNG</p>
+            </div>
+          </div>
+          <button type="submit" class="apply-submit">Submit →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-copy">&copy; 2026 SAN SAN GEAR. All rights reserved.</span>
+    <a href="#" class="footer-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top</a>
+  </footer>
+
+  <script>
+    // Accordion
+    function togglePosition(header) {
+      const item = header.parentElement;
+      const detail = item.querySelector('.position-detail');
+      const isActive = item.classList.contains('active');
+
+      document.querySelectorAll('.position-item').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.position-detail').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        detail.style.maxHeight = detail.scrollHeight + 'px';
+      }
+    }
+
+    // Scroll lock: click "Career Opportunities" to unlock and scroll down
+    (function() {
+      var enterBtn = document.getElementById('enterBtn');
+      var heroSection = document.getElementById('heroSection');
+
+      // If refreshed while scrolled down, keep unlocked
+      if (window.scrollY > 0) {
+        document.documentElement.classList.add('unlocked');
+        document.body.classList.add('unlocked');
+      }
+
+      enterBtn.addEventListener('click', function() {
+        document.documentElement.classList.add('unlocked');
+        document.body.classList.add('unlocked');
+        heroSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    })();
+
+    // Logo spotlight hover with lerp delay
+    (function() {
+      var section = document.querySelector('.logo-reveal');
+      var dark = document.querySelector('.logo-reveal-dark');
+      var cover = document.querySelector('.logo-reveal-cover');
+      var mx = 0, my = 0, sx = 0, sy = 0;
+      var active = false;
+
+      section.addEventListener('mousemove', function(e) {
+        if (!section.classList.contains('active')) {
+          section.classList.add('active');
+          var rect = section.getBoundingClientRect();
+          sx = e.clientX - rect.left;
+          sy = e.clientY - rect.top;
+        }
+        var rect = section.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+        active = true;
+      });
+
+      section.addEventListener('mouseleave', function() {
+        active = false;
+        section.classList.remove('active');
+        dark.style.background = '';
+        cover.style.background = '';
+      });
+
+      function animate() {
+        if (active) {
+          sx += (mx - sx) * 0.05;
+          sy += (my - sy) * 0.05;
+          dark.style.background = 'radial-gradient(circle 134px at ' + sx + 'px ' + sy + 'px, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%)';
+          cover.style.background = 'radial-gradient(circle 134px at ' + sx + 'px ' + sy + 'px, transparent 0%, #0a0a0a 100%)';
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // Apply modal
+    function openApplyModal(position) {
+      document.getElementById('applyRole').value = position;
+      document.getElementById('applyPosition').textContent = position;
+      document.getElementById('applyModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeApplyModal() {
+      document.getElementById('applyModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('applyModal').addEventListener('click', function(e) {
+      if (e.target === this) closeApplyModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeApplyModal();
+    });
+
+
+    // FAQ accordion
+    function toggleFaq(question) {
+      var item = question.parentElement;
+      var answer = item.querySelector('.faq-answer');
+      var isActive = item.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach(function(el) {
+        el.classList.remove('active');
+        el.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    // Philosophy carousel
+    (function() {
+      var slides = document.querySelectorAll('.philosophy-slide');
+      var counter = document.getElementById('philCounter');
+      var current = 0;
+
+      function goTo(next, direction) {
+        if (next === current) return;
+        slides[current].classList.remove('active');
+        slides[next].classList.add('active');
+        slides[next].style.animation = 'none';
+        slides[next].offsetHeight;
+        slides[next].style.animation = direction === 'right' ? 'slideInRight 0.5s ease forwards' : 'slideInLeft 0.5s ease forwards';
+        counter.innerHTML = '0' + (next + 1) + ' <span style="font-family:Pretendard,sans-serif">/</span> 03';
+        current = next;
+      }
+
+      document.getElementById('philNext').addEventListener('click', function() {
+        goTo((current + 1) % slides.length, 'right');
+      });
+
+      document.getElementById('philPrev').addEventListener('click', function() {
+        goTo((current - 1 + slides.length) % slides.length, 'left');
+      });
+    })();
+
+    // Hero grain texture
+    (function() {
+      var canvas = document.querySelector('.hero-grain');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function drawGrain() {
+        var w = canvas.width, h = canvas.height;
+        if (w === 0 || h === 0) return;
+        var imageData = ctx.createImageData(w, h);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          var v = Math.random() * 255;
+          data[i] = v;
+          data[i+1] = v;
+          data[i+2] = v;
+          data[i+3] = 25;
+        }
+        ctx.putImageData(imageData, 0, 0);
+      }
+
+      function loop() {
+        drawGrain();
+        setTimeout(function() { requestAnimationFrame(loop); }, 80);
+      }
+      loop();
+    })();
+
+    // Header color based on section
+    (function() {
+      var header = document.querySelector('header');
+      var darkSections = document.querySelectorAll('.logo-reveal, .cta');
+
+      function checkHeader() {
+        var headerBottom = header.getBoundingClientRect().bottom;
+        var onDark = false;
+
+        darkSections.forEach(function(section) {
+          var rect = section.getBoundingClientRect();
+          if (rect.top < headerBottom && rect.bottom > 0) {
+            onDark = true;
+          }
+        });
+
+        if (onDark) {
+          header.classList.remove('on-light');
+        } else {
+          header.classList.add('on-light');
+        }
+      }
+
+      window.addEventListener('scroll', checkHeader);
+      checkHeader();
+    })();
+  </script>
+
+</body>
+</html>
