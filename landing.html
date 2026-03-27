@@ -1180,8 +1180,13 @@
         item.classList.add('active');
         detail.style.maxHeight = detail.scrollHeight + 'px';
       }
+
+      window.scrollTo({ top: scrollY, behavior: 'instant' });
       requestAnimationFrame(function() {
         window.scrollTo({ top: scrollY, behavior: 'instant' });
+        requestAnimationFrame(function() {
+          window.scrollTo({ top: scrollY, behavior: 'instant' });
+        });
       });
     }
 
