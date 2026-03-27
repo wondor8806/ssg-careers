@@ -352,12 +352,6 @@
           </div>
         </div>
         <div class="apply-field">
-          <label>포트폴리오(25MB 이하)</label>
-          <div class="apply-file-area">
-            <input type="file" name="포트폴리오" accept=".pdf,.doc,.docx,.jpg,.png">
-          </div>
-        </div>
-        <div class="apply-field">
           <label>포트폴리오 URL (Drive, Dropbox 등 링크 첨부)</label>
           <input type="text" name="포트폴리오URL" placeholder="https://drive.google.com/...">
         </div>
@@ -371,8 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var MB = 1024 * 1024;
   var limits = [
     { name: '자기소개서', max: 10 * MB },
-    { name: '이력서',     max: 10 * MB },
-    { name: '포트폴리오', max: 25 * MB }
+    { name: '이력서',     max: 10 * MB }
   ];
   limits.forEach(function(item) {
     var input = document.querySelector('input[name="' + item.name + '"]');
@@ -430,10 +423,8 @@ document.getElementById('applyForm').addEventListener('submit', async function(e
   const MB = 1024 * 1024;
   const f1 = form.querySelector('[name="자기소개서"]').files[0];
   const f2 = form.querySelector('[name="이력서"]').files[0];
-  const f3 = form.querySelector('[name="포트폴리오"]').files[0];
   if (f1 && f1.size > 10 * MB) { alert('자기소개서는 10MB 이하의 파일만 첨부 가능합니다.'); return; }
   if (f2 && f2.size > 10 * MB) { alert('이력서는 10MB 이하의 파일만 첨부 가능합니다.'); return; }
-  if (f3 && f3.size > 25 * MB) { alert('포트폴리오는 25MB 이하의 파일만 첨부 가능합니다.'); return; }
 
   var 성val = form.querySelector('[name="성"]').value;
   var 이름val = form.querySelector('[name="이름"]').value;
