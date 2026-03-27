@@ -1122,17 +1122,18 @@
       var enterBtn = document.getElementById('enterBtn');
       var heroSection = document.getElementById('heroSection');
 
-      // If refreshed while scrolled down, keep unlocked
-      if (window.scrollY > 0) {
+      function unlockScroll() {
         document.documentElement.classList.add('unlocked');
         document.body.classList.add('unlocked');
       }
 
-      // Handle back navigation (bfcache)
+      if (window.scrollY > 0) {
+        unlockScroll();
+      }
+
       window.addEventListener('pageshow', function(e) {
-        if (e.persisted || window.scrollY > 0) {
-          document.documentElement.classList.add('unlocked');
-          document.body.classList.add('unlocked');
+        if (e.persisted) {
+          unlockScroll();
         }
       });
 
