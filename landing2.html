@@ -285,12 +285,10 @@
     /* ── Philosophy ── */
     .philosophy {
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding: 0 var(--side-padding);
+      position: relative;
+      overflow: hidden;
       background: url('26SS%20%5BINTRA%5D/%5BSAN%20SAN%20GEAR%5D%2026SS_INTRA_EDITORIAL_V3_03250104.jpg') center center / cover no-repeat;
       background-color: var(--black);
-      position: relative;
     }
 
     .philosophy::before {
@@ -304,34 +302,39 @@
       z-index: 0;
     }
 
-    .philosophy > * {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 100%;
-    }
-
     .philosophy-label {
+      position: absolute;
+      top: clamp(5rem, 30vh, 18rem);
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - var(--side-padding) * 2);
+      max-width: 900px;
+      margin: 0;
+      padding-top: 0;
       font-family: var(--font-en);
       font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.5);
-      padding-top: clamp(6rem, 35vh, 22rem);
-      margin-bottom: 40px;
-      flex-shrink: 0;
+      z-index: 1;
     }
 
     .philosophy-carousel {
-      flex: 1;
+      position: absolute;
+      top: calc(clamp(5rem, 30vh, 18rem) + 3.5rem);
+      bottom: calc(clamp(2.5rem, 5vh, 4rem) + 3rem);
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - var(--side-padding) * 2);
+      max-width: 900px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      overflow: hidden;
-      padding-bottom: 6rem;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
     }
 
     .philosophy-slide {
@@ -383,11 +386,13 @@
 
     .philosophy-nav {
       position: absolute;
-      bottom: calc(4rem + 30px);
+      bottom: clamp(2.5rem, 5vh, 4rem);
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 6rem);
+      width: calc(100% - var(--side-padding) * 2);
       max-width: 900px;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
