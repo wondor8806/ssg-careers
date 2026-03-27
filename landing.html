@@ -1166,6 +1166,7 @@
   <script>
     // Accordion
     function togglePosition(header) {
+      const scrollY = window.scrollY;
       const item = header.parentElement;
       const detail = item.querySelector('.position-detail');
       const isActive = item.classList.contains('active');
@@ -1179,6 +1180,9 @@
         item.classList.add('active');
         detail.style.maxHeight = detail.scrollHeight + 'px';
       }
+      requestAnimationFrame(function() {
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+      });
     }
 
     // Scroll lock: click "Career Opportunities" to unlock and scroll down
