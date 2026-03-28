@@ -35,7 +35,7 @@
     /* Main */
     .apply-main {
       display: flex;
-      margin-top: 0;
+      margin-top: calc(1.2vw + 1.2vw * 0.7 * 2);
       min-height: calc(100vh - 32px);
       max-width: 1100px;
       margin-left: auto;
@@ -205,9 +205,58 @@
       .apply-right { position: static; height: auto; padding: 3rem 1.5rem; }
     }
 
+
+    .apply-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: calc(1.2vw * 0.7) 3rem;
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,10,0.7);
+      overflow: hidden;
+    }
+    .ticker-wrapper {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 15s linear infinite;
+    }
+    .ticker-wrapper span {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.2em;
+      padding: 0 40px;
+      text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <div class="apply-header">
+    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:1.2vw;min-height:10px;width:auto;flex-shrink:0;margin-right:2rem;">
+    <div style="flex:1;overflow:hidden;">
+      <div class="ticker-wrapper">
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Main -->
   <div class="apply-main">
     <!-- Left: JD -->
