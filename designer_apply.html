@@ -41,17 +41,16 @@
       z-index: 1000;
       padding: calc(13px * 0.7) var(--side-padding);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: transparent;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      background: #0a0a0a;
+      overflow: hidden;
     }
 
     /* Main */
     .apply-main {
       display: flex;
-      margin-top: 60px;
-      min-height: calc(100vh - 60px);
+      margin-top: 32px;
+      min-height: calc(100vh - 32px);
       max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
@@ -219,12 +218,44 @@
       .apply-left { border-right: none; border-bottom: 1px solid #e8e8e8; padding: 3rem 1.5rem; }
       .apply-right { position: static; height: auto; padding: 3rem 1.5rem; }
     }
+
+    .ticker-wrapper {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-wrapper span {
+      font-family: var(--font-en);
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.2em;
+      padding: 0 40px;
+      text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <div class="apply-header">
-    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:13px;width:auto;">
+    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:13px;width:auto;flex-shrink:0;margin-right:2rem;">
+    <div style="flex:1;overflow:hidden;position:relative;">
+      <div class="ticker-wrapper">
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+      </div>
+    </div>
   </div>
 
   <!-- Main -->
