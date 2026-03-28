@@ -1146,6 +1146,7 @@
         document.documentElement.classList.add('unlocked');
         document.body.classList.add('unlocked');
         sessionStorage.setItem('ssg_unlocked', '1');
+        window.scrollTo(0, 0);
       }
 
       if (sessionStorage.getItem('ssg_unlocked') === '1') {
@@ -1155,6 +1156,7 @@
       window.addEventListener('pageshow', function(e) {
         if (sessionStorage.getItem('ssg_unlocked') === '1') {
           unlock();
+          window.scrollTo(0, 0);
         }
       });
 
