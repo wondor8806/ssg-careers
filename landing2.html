@@ -909,16 +909,12 @@
       .scroll-indicator {
         display: none;
       }
-
-      .ticker-wrapper {
-        animation-duration: 15s;
-      }
     }
 
     .ticker-wrapper {
       display: flex;
       white-space: nowrap;
-      animation: ticker 15s linear infinite;
+      will-change: transform;
     }
     .ticker-wrapper span {
       font-family: var(--font-en);
@@ -927,10 +923,6 @@
       letter-spacing: 0.2em;
       padding: 0 40px;
       text-transform: uppercase;
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-25%); }
     }
   </style>
 </head>
@@ -941,36 +933,6 @@
     <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:1.2vw;width:auto;flex-shrink:0;margin-right:2rem;">
     <div style="flex:1;overflow:hidden;position:relative;">
       <div class="ticker-wrapper">
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
-        <span>SYSTEM STATUS: OPERATIONAL</span>
-        <span>LOGIC ALIGNMENT: 98.2%</span>
-        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-        <span>SEARCHING FOR NEW OPERATORS...</span>
         <span>SYSTEM STATUS: OPERATIONAL</span>
         <span>LOGIC ALIGNMENT: 98.2%</span>
         <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
@@ -1347,6 +1309,31 @@
       loop();
     })();
 
+  </script>
+
+  <script>
+  (function() {
+    var wrapper = document.querySelector('.ticker-wrapper');
+    if (!wrapper) return;
+    var spans = wrapper.querySelectorAll('span');
+    var half = spans.length / 2;
+    var setWidth = 0;
+    for (var i = 0; i < half; i++) {
+      setWidth += spans[i].offsetWidth;
+    }
+    var speed = setWidth / 15;
+    var pos = 0;
+    var last = performance.now();
+    function tick(now) {
+      var dt = (now - last) / 1000;
+      last = now;
+      pos -= speed * dt;
+      if (pos <= -setWidth) pos += setWidth;
+      wrapper.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
   </script>
 
 </body>
