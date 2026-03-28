@@ -1137,7 +1137,6 @@
       });
     });
 
-    // Scroll lock/unlock with sessionStorage persistence
     (function() {
       var enterBtn = document.getElementById('enterBtn');
       var heroSection = document.getElementById('heroSection');
@@ -1149,20 +1148,28 @@
         window.scrollTo(0, 0);
       }
 
-      if (sessionStorage.getItem('ssg_unlocked') === '1') {
-        unlock();
+      function lockScroll() {
+        document.documentElement.classList.remove('unlocked');
+        document.body.classList.remove('unlocked');
+        window.scrollTo(0, 0);
       }
 
-      window.addEventListener('pageshow', function(e) {
-        if (sessionStorage.getItem('ssg_unlocked') === '1') {
-          unlock();
-          window.scrollTo(0, 0);
-        }
+      if (sessionStorage.getItem('ssg_unlocked') === '1') {
+        sessionStorage.removeItem('ssg_unlocked');
+        lockScroll();
+      } else {
+        lockScroll();
+      }
+
+      window.addEventListener('beforeunload', function() {
+        sessionStorage.removeItem('ssg_unlocked');
       });
 
       enterBtn.addEventListener('click', function() {
         unlock();
-        heroSection.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function() {
+          heroSection.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
       });
     })();
 
