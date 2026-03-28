@@ -64,23 +64,15 @@
     /* ── Header ── */
     header {
       position: fixed;
-      top: 32px;
+      top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
       padding: calc(13px * 0.7) var(--side-padding);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: transparent;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    header.on-light {
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      background: #0a0a0a;
+      overflow: hidden;
     }
 
 
@@ -919,18 +911,6 @@
       }
     }
 
-    .system-ticker {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1001;
-      width: 100%;
-      overflow: hidden;
-      background: #0a0a0a;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 8px 0;
-    }
     .ticker-wrapper {
       display: flex;
       white-space: nowrap;
@@ -954,24 +934,22 @@
 
   <!-- Header -->
   <header>
-    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:13px;width:auto;">
-
-  </header>
-
-  <div class="system-ticker">
-    <div class="ticker-wrapper">
-      <span>SYSTEM STATUS: OPERATIONAL</span>
-      <span>LOGIC ALIGNMENT: 98.2%</span>
-      <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-      <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-      <span>SEARCHING FOR NEW OPERATORS...</span>
-      <span>SYSTEM STATUS: OPERATIONAL</span>
-      <span>LOGIC ALIGNMENT: 98.2%</span>
-      <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
-      <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
-      <span>SEARCHING FOR NEW OPERATORS...</span>
+    <img src="SS_letter_social_white_v2.png" alt="SAN SAN GEAR" style="height:13px;width:auto;flex-shrink:0;margin-right:2rem;">
+    <div style="flex:1;overflow:hidden;position:relative;">
+      <div class="ticker-wrapper">
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+        <span>SYSTEM STATUS: OPERATIONAL</span>
+        <span>LOGIC ALIGNMENT: 98.2%</span>
+        <span>CURRENT NODES: SEOUL, TOKYO, LONDON, SHANGHAI</span>
+        <span>26FW [CABLE] PROTOCOL: ACTIVE</span>
+        <span>SEARCHING FOR NEW OPERATORS...</span>
+      </div>
     </div>
-  </div>
+  </header>
 
   <!-- Logo Reveal -->
   <section class="logo-reveal">
@@ -1326,32 +1304,6 @@
       loop();
     })();
 
-    // Header color based on section
-    (function() {
-      var header = document.querySelector('header');
-      var darkSections = document.querySelectorAll('.logo-reveal, .cta');
-
-      function checkHeader() {
-        var headerBottom = header.getBoundingClientRect().bottom;
-        var onDark = false;
-
-        darkSections.forEach(function(section) {
-          var rect = section.getBoundingClientRect();
-          if (rect.top < headerBottom && rect.bottom > 0) {
-            onDark = true;
-          }
-        });
-
-        if (onDark) {
-          header.classList.remove('on-light');
-        } else {
-          header.classList.add('on-light');
-        }
-      }
-
-      window.addEventListener('scroll', checkHeader);
-      checkHeader();
-    })();
   </script>
 
 </body>
