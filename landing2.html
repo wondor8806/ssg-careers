@@ -2,7 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <script>if(sessionStorage.getItem("ssg_unlocked")==="1"){document.documentElement.classList.add("unlocked")}</script>
+  <script>
+    if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+    if(sessionStorage.getItem("ssg_unlocked")==="1"){document.documentElement.classList.add("unlocked")}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAN SAN GEAR — Careers</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
@@ -961,7 +964,7 @@
 
   <!-- Logo Reveal -->
   <section class="logo-reveal">
-    <img src="ssg%20logo%20PB.png" alt="SAN SAN GEAR" class="logo-reveal-img">
+    <img src="SS_logo_PB.png" alt="SAN SAN GEAR" class="logo-reveal-img">
     <div class="logo-reveal-dark"></div>
     <div class="logo-reveal-cover"></div>
     <p class="logo-reveal-text" id="enterBtn">Career Opportunities</p>
@@ -1203,11 +1206,12 @@
         document.body.classList.add('unlocked');
       }
 
-      // bfcache 복원 시에도 unlock
+      // bfcache 복원 시에도 unlock + 스크롤 맨 위로
       window.addEventListener('pageshow', function(e) {
         if (sessionStorage.getItem('ssg_unlocked') === '1') {
           document.documentElement.classList.add('unlocked');
           document.body.classList.add('unlocked');
+          window.scrollTo(0, 0);
         }
       });
 
