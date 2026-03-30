@@ -1204,9 +1204,9 @@
         window.scrollTo(0, 0);
       }
 
-      if (sessionStorage.getItem('ssg_unlocked') === '1') {
-        sessionStorage.removeItem('ssg_unlocked');
-        lockScroll();
+      if (sessionStorage.getItem("ssg_unlocked") === "1") {
+        document.documentElement.classList.add("unlocked");
+        document.body.classList.add("unlocked");
       } else {
         lockScroll();
       }
