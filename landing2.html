@@ -1189,11 +1189,14 @@
 
       // bfcache 복원 시 unlock + 항상 맨 위로
       window.addEventListener('pageshow', function(e) {
-        window.scrollTo(0, 0);
         if (sessionStorage.getItem('ssg_unlocked') === '1') {
           document.documentElement.classList.add('unlocked');
           document.body.classList.add('unlocked');
         }
+        window.scrollTo(0, 0);
+        setTimeout(function() { window.scrollTo(0, 0); }, 0);
+        setTimeout(function() { window.scrollTo(0, 0); }, 50);
+        setTimeout(function() { window.scrollTo(0, 0); }, 150);
       });
 
       enterBtn.addEventListener('click', function() {
