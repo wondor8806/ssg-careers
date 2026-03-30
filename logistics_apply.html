@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAN SAN GEAR — Apply for SCM</title>
+  <title>SAN SAN GEAR — Apply for Logistics</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <style>
     @font-face {
@@ -264,30 +264,30 @@
     <!-- Left: JD -->
     <div class="apply-left">
       <p class="apply-title">지원하기</p>
-      <p class="apply-position">SCM</p>
+      <p class="apply-position">Logistics</p>
 
-      <p class="jd-section-title">1. 모집요강 - SCM</p>
+      <p class="jd-section-title">1. 모집요강 - LOGISTICS</p>
 
       <p class="jd-subtitle">담당업무</p>
       <ul class="jd-list">
-        <li>국내외 협력업체 소싱 및 발주 관리</li>
-        <li>생산 일정 관리 및 납기 조율</li>
-        <li>원부자재 수급 및 재고 관리</li>
-        <li>공급망 최적화 및 원가 절감 방안 수립</li>
+        <li>국내외 물류 운영 및 배송 프로세스 관리</li>
+        <li>입출고 관리 및 창고 운영 최적화</li>
+        <li>택배사·물류사 협력업체 관리 및 협상</li>
+        <li>물류 데이터 분석 및 개선 방안 수립</li>
       </ul>
 
       <p class="jd-subtitle">자격요건</p>
       <ul class="jd-list">
         <li>성별·경력 무관</li>
         <li>해외 출장에 결격 사유가 없는 분</li>
-        <li>패션·의류 관련 학과 졸업생 혹은 졸업예정자</li>
+        <li>물류·유통·경영 관련 학과 졸업생 혹은 졸업예정자</li>
       </ul>
 
       <p class="jd-subtitle">우대사항</p>
       <ul class="jd-list">
-        <li>의류 생산 및 SCM 관련 실무 경험자</li>
-        <li>ERP 또는 재고관리 시스템 사용 경험자</li>
-        <li>중국어 또는 영어 커뮤니케이션 가능자</li>
+        <li>물류 또는 이커머스 실무 경험자</li>
+        <li>WMS·OMS 등 물류 시스템 사용 경험자</li>
+        <li>데이터 분석 툴(엑셀, SQL 등) 활용 가능자</li>
       </ul>
 
       <p class="jd-section-title">2. 근무조건</p>
@@ -331,7 +331,7 @@
         <input type="hidden" name="_subject" id="subjectField">
         <div class="apply-field">
           <label>직종</label>
-          <input type="text" name="직종" value="SCM" readonly>
+          <input type="text" name="직종" value="Logistics" readonly>
         </div>
         <div class="apply-row">
           <div class="apply-field">
@@ -454,7 +454,7 @@ document.getElementById('applyForm').addEventListener('submit', async function(e
   var 이름val = form.querySelector('[name="이름"]').value;
   var emailVal = form.querySelector('[name="email"]').value;
   document.getElementById('replytoField').value = emailVal;
-  document.getElementById('subjectField').value = '[SCM 지원] ' + 성val + 이름val + ' (' + emailVal + ')';
+  document.getElementById('subjectField').value = '[Logistics 지원] ' + 성val + 이름val + ' (' + emailVal + ')';
   const data = new FormData(form);
 
   const submitBtn = form.querySelector('button[type="submit"]');
