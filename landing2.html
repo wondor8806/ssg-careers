@@ -1179,9 +1179,7 @@
         lockScroll();
       }
 
-      window.addEventListener('beforeunload', function() {
-        sessionStorage.removeItem('ssg_unlocked');
-      });
+      window.addEventListener("pageshow", function(e) { if (e.persisted) { document.documentElement.classList.add("unlocked"); document.body.classList.add("unlocked"); } });
 
       enterBtn.addEventListener('click', function() {
         unlock();
@@ -1337,12 +1335,7 @@
   (function() {
     var wrapper = document.querySelector('.ticker-wrapper');
     if (!wrapper) return;
-    var spans = wrapper.querySelectorAll('span');
-    var half = spans.length / 2;
-    var setWidth = 0;
-    for (var i = 0; i < half; i++) {
-      setWidth += spans[i].offsetWidth;
-    }
+    var setWidth = wrapper.scrollWidth / 2;
     var pixelsPerSecond = 80;
     var pos = 0;
     var last = null;
