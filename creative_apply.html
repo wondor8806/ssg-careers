@@ -236,27 +236,7 @@
 <body>
   <!-- Header -->
   <div class="apply-header">
-    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:1.2vw;min-height:10px;width:auto;flex-shrink:0;margin-right:2rem;">
-    <div style="flex:1;overflow:hidden;">
-      <div class="ticker-wrapper">
-        <span>22FW SHELTER</span>
-        <span>23SS MERCURIAL</span>
-        <span>23FW THIRD KIT</span>
-        <span>24SS SCOPE</span>
-        <span>24FW PIVOT <span style="font-family:Arial;padding:0;display:inline">/</span> NODE</span>
-        <span>25SS CHECK POINT</span>
-        <span>25FW WAYFINDER</span>
-        <span>26SS INTRA</span>
-        <span>22FW SHELTER</span>
-        <span>23SS MERCURIAL</span>
-        <span>23FW THIRD KIT</span>
-        <span>24SS SCOPE</span>
-        <span>24FW PIVOT <span style="font-family:Arial;padding:0;display:inline">/</span> NODE</span>
-        <span>25SS CHECK POINT</span>
-        <span>25FW WAYFINDER</span>
-        <span>26SS INTRA</span>
-      </div>
-    </div>
+    <img src="SS_letter_social_white.png" alt="SAN SAN GEAR" style="height:0.84vw;min-height:7px;width:auto;flex-shrink:0;">
   </div>
 
   <!-- Main -->
@@ -482,39 +462,7 @@ document.getElementById('applyForm').addEventListener('submit', async function(e
   }
 });
 
-(function() {
-  var wrapper = document.querySelector('.ticker-wrapper');
-  if (!wrapper) return;
-  var spans = wrapper.querySelectorAll('span');
-  var half = spans.length / 2;
-  var setWidth = 0;
-  for (var i = 0; i < half; i++) {
-    setWidth += spans[i].offsetWidth;
-  }
-  var pixelsPerSecond = 80;
-  var pos = 0;
-  var last = null;
-  var hidden = false;
 
-  document.addEventListener('visibilitychange', function() {
-    hidden = document.hidden;
-    if (!hidden) last = null;
-  });
-
-  function tick(now) {
-    if (!hidden) {
-      if (last !== null) {
-        var dt = (now - last) / 1000;
-        pos -= pixelsPerSecond * dt;
-        if (pos <= -setWidth) pos += setWidth;
-        wrapper.style.transform = 'translateX(' + pos + 'px)';
-      }
-      last = now;
-    }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
   </script>
 </body>
 </html>
